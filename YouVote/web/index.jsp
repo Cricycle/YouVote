@@ -97,7 +97,7 @@
                                 <a href="travel.jsp">Travel</a>
                                 <a href="underwater.jsp">Underwater</a>
 				<span class="right_ab">
-					<a href="login.jsp">Login</a>
+					<a href="Login">Login</a>
                                         <a href="createaccount.jsp">Create Account</a>
                                         <a href="about.jsp">About</a>
 				</span>

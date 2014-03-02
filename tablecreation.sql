@@ -1,5 +1,5 @@
 CREATE TABLE Users (
-	userID INT PRIMARY KEY,
+	userID serial PRIMARY KEY,
 	email VARCHAR(45),
 	password VARCHAR(45),
 	firstname VARCHAR(45),
@@ -8,13 +8,13 @@ CREATE TABLE Users (
 
 
 CREATE TABLE PhotoCategory (
-	categoryID INT PRIMARY KEY,
+	categoryID serial PRIMARY KEY,
 	description VARCHAR(45)
 );
 
 
 CREATE TABLE Pictures (
-	pictureID INT PRIMARY KEY,
+	pictureID serial PRIMARY KEY,
 	userID INT,
 	categoryID INT,
 	description VARCHAR(250),
@@ -24,14 +24,14 @@ CREATE TABLE Pictures (
 
 
 CREATE TABLE Voters (
-	voterID INT PRIMARY KEY,
+	voterID serial PRIMARY KEY,
 	userID INT,
 	pictureID INT
 );
 
 
 CREATE TABLE Comments (
-	commentID INT PRIMARY KEY,
+	commentID serial PRIMARY KEY,
 	userID INT,
 	pictureID INT,
 	comment VARCHAR(250)

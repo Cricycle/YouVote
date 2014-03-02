@@ -2,7 +2,7 @@
 body{
 	background:#f7f7f7 url(../images/paper_2.png) repeat top left;
 	color:#000;
-	font-family:'Georgia', 'Trebuchet MS', serif;
+        font-family: 'Oswald', 'Myriad Pro', arial, serif;
 	font-size:12px;
 	overflow-y:scroll;
 }
@@ -111,4 +111,27 @@ h1 span{
 .footer span.right_ab{
 	position:absolute;
 	right:4px;
+}
+
+/*----------------------------------------------Textbox-------------------------------------*/
+ .textbox { 
+    border: 1px solid #848484; 
+    -webkit-border-radius: 30px; 
+    -moz-border-radius: 30px; 
+    border-radius: 30px; 
+    outline:0; 
+    height:20px; 
+    width: 150px; 
+    padding-left:10px; 
+    padding-right:10px; 
+  }
+  
+/*----------------------------------------------Table Style -------------------------------------*/
+td.tdfield
+{
+    width:150px;
+}
+tr.trfield
+{
+    height:40px;
 }
