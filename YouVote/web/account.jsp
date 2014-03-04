@@ -42,7 +42,7 @@
                                         <input class="textbox" value="" name="userID" type="hidden">
                                         <table border="0" cellpadding="10">
                                             <tr class="trfield"><td class="tdfield"><h2>Email Address</h2></td><td><input class="textbox" type="text" name="email"></td></tr>
-                                            <tr class="trfield"><td class="tdfield"><h2>Password</h2></td><td><input class="textbox" type="text" name="password"></td></tr>
+                                            <tr class="trfield"><td class="tdfield"><h2>Password</h2></td><td><input class="textbox" type="password" name="password"></td></tr>
                                         </table>
                                             <button class="btn btn-4 btn-4c icon-arrow-right">Login</button>
                                       </form>
