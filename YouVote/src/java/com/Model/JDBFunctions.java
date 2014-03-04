@@ -58,7 +58,7 @@ public class JDBFunctions {
         String SQLstatement;
         boolean result = false;
         
-        SQLstatement = "SELECT COUNT(*) as cnt, userID FROM Users WHERE email = '" + email + "' AND password = '" + password + "' GROUP BY userID"; 
+        SQLstatement = "SELECT COUNT(*) as cnt, userID FROM Users WHERE upper(email) = upper('" + email + "') AND password = '" + password + "' GROUP BY userID"; 
         
         resultSet = select(SQLstatement);
         

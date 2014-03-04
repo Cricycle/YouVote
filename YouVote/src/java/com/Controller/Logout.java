@@ -1,3 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package com.Controller;
 
 import java.io.IOException;
@@ -15,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Chelsea
  */
-public class Login extends HttpServlet {
+public class Logout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,24 +37,12 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-           JDBFunctions user = new JDBFunctions(); 
-           try
-            {
-                if(user.login(request.getParameter("email"), request.getParameter("password")))
-                {        
-                    user.session = request.getSession(true);
-                    user.saveLoginID(user.LoggedInID);
-                    response.sendRedirect("index.jsp");
-                }
-                else
-                {
-                    response.sendRedirect("account.jsp");
-                }
-            }
-            catch(Exception e)
-            {
-                System.out.println(e);
-            }
+            JDBFunctions userLogout = new JDBFunctions();
+            userLogout.session = request.getSession(true);
+            
+            userLogout.saveLoginID(0);
+            
+            response.sendRedirect("index.jsp");
         }
     }
 

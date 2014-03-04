@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+    <%@page import="com.Model.JDBFunctions"%>
+    <%@page import="javax.servlet.http.HttpSession"%>
+    <%@page import="java.sql.ResultSet"%>
     <head>
         <title>YouVote</title>
 	<meta charset="UTF-8" />
@@ -24,7 +27,24 @@
                                 <a href="travel.jsp">Travel</a>
                                 <a href="underwater.jsp">Underwater</a>
 				<span class="right_ab">
-                                        <a href="account.jsp">Login / Create Account</a>
+                                    <%
+                                        JDBFunctions user = new JDBFunctions();
+                                        String html = "";
+                                        user.session = request.getSession(true);
+                                        //out.println(user.getLoginID());
+                                        if(user.getLoginID() == null || user.getLoginID() == 0)
+                                        {
+                                            html = "<a href=\"account.jsp\">Login / Create Account</a>";
+                                            out.println(html);
+                                        }
+                                        else
+                                        {
+                                            html = "<form style=\"display: inline\" action=\"Logout\" method=\"post\">"
+                                                    + "<a href=\"Logout\">Logout</a>"
+                                                    + "</form>";
+                                            out.println(html);
+                                        }
+                                    %>
                                         <a href="about.jsp">About</a>
 				</span>
 			</div>

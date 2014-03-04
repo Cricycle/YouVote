@@ -9,13 +9,22 @@
         <url-pattern>/Login/*</url-pattern>
     </servlet-mapping>
     
-   <servlet>
+    <servlet>
         <servlet-name>SavePerson</servlet-name>
         <servlet-class>com.Controller.SavePerson</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SavePerson</servlet-name>
         <url-pattern>/SavePerson/*</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>com.Controller.Logout</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     
     <session-config>
