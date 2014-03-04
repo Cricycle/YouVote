@@ -54,7 +54,7 @@
                                         <input class="textbox" value="" name="userID" type="hidden">
                                         <table border="0" cellpadding="10">
                                             <tr class="trfield"><td class="tdfield"><h2>Email Address</h2></td><td><input class="textbox" type="text" name="email"></td></tr>
-                                            <tr class="trfield"><td class="tdfield"><h2>Password</h2></td><td><input class="textbox" type="text" name="password"></td></tr>
+                                            <tr class="trfield"><td class="tdfield"><h2>Password</h2></td><td><input class="textbox" type="password" name="password"></td></tr>
                                             <tr class="trfield"><td class="tdfield"><h2>First Name</h2></td><td><input class="textbox" type="text" name="firstname"></td></tr>
                                             <tr class="trfield"><td class="tdfield"><h2>Last Name</h2></td><td><input class="textbox" type="text" name="lastname"></td></tr>
                                         </table>
