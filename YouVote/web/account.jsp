@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <%@include file="header.jsp"%>
     <head>
         <title>YouVote</title>
 	<meta charset="UTF-8" />
@@ -31,11 +32,24 @@
 		<div class="container">
 			<div class="header">
 				<h1>YouVote<span>for your favorite photo</span></h1>
-				<h2>Create Account</h2>
+				<h2>Login or Create Account</h2>
 			</div>
 			<div class="content example7">
-				<div id="tj_userInformation" class="tj_userInformation">
-                                    <h1>User Information</h1>
+                            
+                               	<div id="tj_login" class="tj_login">
+                                    <h1>Login</h1>
+                                        <form action="Login" method="post">
+                                        <input class="textbox" value="" name="userID" type="hidden">
+                                        <table border="0" cellpadding="10">
+                                            <tr class="trfield"><td class="tdfield"><h2>Email Address</h2></td><td><input class="textbox" type="text" name="email"></td></tr>
+                                            <tr class="trfield"><td class="tdfield"><h2>Password</h2></td><td><input class="textbox" type="text" name="password"></td></tr>
+                                        </table>
+                                            <button class="btn btn-4 btn-4c icon-arrow-right">Login</button>
+                                      </form>
+				</div>
+                            
+				<div id="tj_createAccount" class="tj_createAccount">
+                                    <h1>Create Account</h1>
                                         <form action="SavePerson" method="post">
                                         <input class="textbox" value="" name="userID" type="hidden">
                                         <table border="0" cellpadding="10">
@@ -47,27 +61,6 @@
                                             <button class="btn btn-4 btn-4c icon-arrow-right">Create</button>
                                       </form>
 				</div>
-			</div>
-
-			<div class="footer">
-				<a href="index.jsp"><span>Home</span></a>
-                                <a href="aerial.jsp">Aerial</a>
-                                <a href="action.jsp">Action</a>
-                                <a href="bw.jsp">Black and White</a>
-                                <a href="candid.jsp">Candid</a>
-                                <a href="fashion.jsp">Fashion</a>
-                                <a href="food.jsp">Food</a>
-                                <a href="landscape.jsp">Landscape</a>
-                                <a href="nature.jsp">Nature</a>
-                                <a href="night.jsp">Night</a>
-                                <a href="slife.jsp">Still Life</a>
-                                <a href="travel.jsp">Travel</a>
-                                <a href="underwater.jsp">Underwater</a>
-				<span class="right_ab">
-					<a href="Login">Login</a>
-                                        <a href="createaccount.jsp">Create Account</a>
-                                        <a href="about.jsp">About</a>
-				</span>
 			</div>
 		</div>
 		

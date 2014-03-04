@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.Model.JDBFunctions;
 import java.sql.ResultSet;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,21 +31,23 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
             
-            JDBFunctions login = new JDBFunctions();
-            
-            try{
-                //ResultSet r = login.select("SELECT 'hello' as hello");
-                //out.println(login.select("select 'hello' as hello"));
+           JDBFunctions user = new JDBFunctions(); 
+           try
+            {
+                out.println(request.getParameter("email"));
+                out.println(request.getParameter("password"));
+                out.println(user.login(request.getParameter("email"), request.getParameter("password")));
+                if(user.login(request.getParameter("email"), request.getParameter("password")))
+                {        
+                    user.session = request.getSession(true);
+                    user.saveLoginID(user.LoggedInID);
+                    response.sendRedirect("index.jsp");
+                }
+                else
+                {
+                    response.sendRedirect("account.jsp");
+                }
             }
             catch(Exception e)
             {

@@ -76,9 +76,18 @@
 	height:600px;
 }
 
-.tj_userInformation{
-	width:800px;
+.tj_login{
+	width:25%;
+	height:400px;
+	position:relative;
+	margin:30px 200px;
+        float:left;
+}
+
+.tj_createAccount{
+	width:25%;
 	height:400px;
 	position:relative;
 	margin:30px auto;
+        float:left;
 }

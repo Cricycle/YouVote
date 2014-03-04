@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <%@include file="header.jsp"%>
     <head>
         <title>YouVote</title>
 	<meta charset="UTF-8" />
@@ -81,26 +82,6 @@
                                         <li><a href="travel.jsp">Travel</a></li>
                                         <li><a href="underwater.jsp">Underwater</a></li>
 				</ul>
-			</div>
-			<div class="footer">
-				<a href="index.jsp"><span>Home</span></a>
-                                <a href="aerial.jsp">Aerial</a>
-                                <a href="action.jsp">Action</a>
-                                <a href="bw.jsp">Black and White</a>
-                                <a href="candid.jsp">Candid</a>
-                                <a href="fashion.jsp">Fashion</a>
-                                <a href="food.jsp">Food</a>
-                                <a href="landscape.jsp">Landscape</a>
-                                <a href="nature.jsp">Nature</a>
-                                <a href="night.jsp">Night</a>
-                                <a href="slife.jsp">Still Life</a>
-                                <a href="travel.jsp">Travel</a>
-                                <a href="underwater.jsp">Underwater</a>
-				<span class="right_ab">
-					<a href="Login">Login</a>
-                                        <a href="createaccount.jsp">Create Account</a>
-                                        <a href="about.jsp">About</a>
-				</span>
 			</div>
 		</div>
 		
