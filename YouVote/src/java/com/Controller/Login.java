@@ -35,9 +35,6 @@ public class Login extends HttpServlet {
            JDBFunctions user = new JDBFunctions(); 
            try
             {
-                out.println(request.getParameter("email"));
-                out.println(request.getParameter("password"));
-                out.println(user.login(request.getParameter("email"), request.getParameter("password")));
                 if(user.login(request.getParameter("email"), request.getParameter("password")))
                 {        
                     user.session = request.getSession(true);
