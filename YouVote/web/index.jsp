@@ -69,18 +69,18 @@
 				<ul>
 					<li>Featured Categories:</li>
                                         <li class="selected"><a href="index.jsp">Winners</a></li>
-					<li><a href="aerial.jsp">Aerial</a></li>
-					<li><a href="action.jsp">Action</a></li>
-					<li><a href="bw.jsp">Black and White</a></li>
-					<li><a href="candid.jsp">Candid</a></li>
-					<li><a href="fashion.jsp">Fashion</a></li>
-					<li><a href="food.jsp">Food</a></li>
-					<li><a href="landscape.jsp">Landscape</a></li>
-					<li><a href="nature.jsp">Nature</a></li>
-					<li><a href="night.jsp">Night</a></li>
-					<li><a href="slife.jsp">Still Life</a></li>
-                                        <li><a href="travel.jsp">Travel</a></li>
-                                        <li><a href="underwater.jsp">Underwater</a></li>
+					<li><a href="photos.jsp">Aerial</a></li>
+					<li><a href="photos.jsp">Action</a></li>
+					<li><a href="photos.jsp">Black and White</a></li>
+					<li><a href="photos.jsp">Candid</a></li>
+					<li><a href="photos.jsp">Fashion</a></li>
+					<li><a href="photos.jsp">Food</a></li>
+					<li><a href="photos.jsp">Landscape</a></li>
+					<li><a href="photos.jsp">Nature</a></li>
+					<li><a href="photos.jsp">Night</a></li>
+					<li><a href="photos.jsp">Still Life</a></li>
+                                        <li><a href="photos.jsp">Travel</a></li>
+                                        <li><a href="photos.jsp">Underwater</a></li>
 				</ul>
 			</div>
 		</div>
