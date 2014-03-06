@@ -18,6 +18,11 @@ public class JDBFunctions {
    
     private ResultSet resultSet = null;
     public int LoggedInID;
+    public int userID;
+    public String email;
+    public String password;
+    public String firstname;
+    public String lastname;
     
     public void execute(String SQL) throws SQLException
     {
@@ -93,5 +98,37 @@ public class JDBFunctions {
     public Integer getLoginID()
     {
         return (Integer)session.getAttribute("LoggedInID");
-    } 
+    }
+    
+    public void saveUserID(Integer pUserID)
+    {
+        session.setAttribute("userID", pUserID);
+    }
+    
+    public Integer getUserID()
+    {
+        return (Integer)session.getAttribute("userID");
+    }
+    
+    public void getUserInfo(Integer pUserID)
+    {
+        String sql;
+        sql = "SELECT * FROM Users WHERE userID = " + pUserID.toString(); 
+        try
+        {
+            resultSet = select(sql);
+            if(resultSet.next())
+            {
+                userID = resultSet.getInt("userID");
+                email = resultSet.getString("email");
+                password = resultSet.getString("password");
+                firstname = resultSet.getString("firstname");
+                lastname = resultSet.getString("lastname");
+            }
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e);
+        }
+    }
 }

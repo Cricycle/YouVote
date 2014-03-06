@@ -38,6 +38,11 @@
                             
                                	<div id="tj_login" class="tj_login">
                                     <h1>Login</h1>
+                                    
+                                    <br>
+                                    <h2><i>Invalid login! Please try again.</i></h2>
+                                    <br>
+                                    
                                         <form action="Login" method="post">
                                         <input class="textbox" value="" name="userID" type="hidden">
                                         <table border="0" cellpadding="10">
@@ -51,7 +56,7 @@
 				<div id="tj_createAccount" class="tj_createAccount">
                                     <h1>Create Account</h1>
                                         <form action="SavePerson" method="post">
-                                        <input class="textbox" value="0" name="userID" type="hidden">
+                                        <input class="textbox" value="" name="userID" type="hidden">
                                         <table border="0" cellpadding="10">
                                             <tr class="trfield"><td class="tdfield"><h2>Email Address</h2></td><td><input class="textbox" type="text" name="email"></td></tr>
                                             <tr class="trfield"><td class="tdfield"><h2>Password</h2></td><td><input class="textbox" type="password" name="password"></td></tr>

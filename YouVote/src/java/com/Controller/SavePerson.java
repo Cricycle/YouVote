@@ -37,7 +37,14 @@ public class SavePerson extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            String sqlStatement = "INSERT INTO users(email, password, firstname, lastname)"
+            JDBFunctions user = new JDBFunctions();
+            
+            Integer userIDs = 0;
+            String ID = request.getParameter("userID");
+            out.println("Test: " + ID);
+            userIDs = Integer.parseInt(ID);
+            
+            String sqlStatementInsert = "INSERT INTO users(email, password, firstname, lastname)"
                     + " VALUES(" 
                     + "'" + request.getParameter("email") + "', "
                     + "'" + request.getParameter("password") + "', "
@@ -45,21 +52,42 @@ public class SavePerson extends HttpServlet {
                     + "'" + request.getParameter("lastname") + "'"
                     + ")";
             
-            JDBFunctions insertStatement = new JDBFunctions();
+            String sqlStatementUpdate;
+            sqlStatementUpdate = "UPDATE Users "
+                + "set email = '" + request.getParameter("email") + "', "
+                + "password = '" + request.getParameter("password") + "', "
+                + "firstname = '" + request.getParameter("firstname") + "', "
+                + "lastname = '" + request.getParameter("lastname") + "'"
+                + " where userID = " + userIDs;
+       
             
-            try
+            if(userIDs == 0)
             {
-                insertStatement.execute(sqlStatement);
+                try
+                {
+                    user.execute(sqlStatementInsert);
+                    response.sendRedirect("index.jsp");
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Save Person: " + e);
+                }
             }
-            catch(Exception e)
+            else
             {
-                System.out.println(e);
-            }
+                try
+                {
+                    user.execute(sqlStatementUpdate);
+                    response.sendRedirect("accountinfo.jsp");
+                }
+                catch(Exception e)
+                {
+                    System.out.println("Save Person: " + e);
+                }
+            } 
             
-            response.sendRedirect("index.jsp");
-            
-            //out.println(sqlStatement);
-            
+            user.session = request.getSession(true);
+            user.saveUserID(userIDs);
         }
     }
 

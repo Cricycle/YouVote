@@ -30,7 +30,13 @@
                                     <%
                                         JDBFunctions user = new JDBFunctions();
                                         String html = "";
+                                        String htmlUserInfo = "";
                                         user.session = request.getSession(true);
+                                        
+                                        Integer userID = 0;
+                                        userID = (Integer)session.getAttribute("LoggedInID");
+                                        //out.println(userID);
+                                        
                                         //out.println(user.getLoginID());
                                         if(user.getLoginID() == null || user.getLoginID() == 0)
                                         {
@@ -39,6 +45,10 @@
                                         }
                                         else
                                         {
+                                            user.getUserInfo(userID);
+                                            htmlUserInfo = "<a href=\"accountinfo.jsp\">Welcome " + user.firstname + "</a>";
+                                            out.println(htmlUserInfo);
+                                            
                                             html = "<form style=\"display: inline\" action=\"Logout\" method=\"post\">"
                                                     + "<a href=\"Logout\">Logout</a>"
                                                     + "</form>";
