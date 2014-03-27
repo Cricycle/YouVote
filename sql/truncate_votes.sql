@@ -1,0 +1,2 @@
+﻿DELETE FROM votes
+WHERE voteDate < CURRENT_TIMESTAMP - INTERVAL '8 days';
