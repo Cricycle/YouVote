@@ -1,13 +1,15 @@
 CREATE TABLE photos(
-	photoID SERIAL PRIMARY KEY,
+	photoID SERIAL,
 	imagePath VARCHAR(250),
-	userID INT REFERENCES users(userID),
-	categoryID INT REFERENCES photoCategories(categoryID),
+	userID INT,
+	categoryID INT,
 	description VARCHAR(100),
 	imageSize INT,
 	uploadDate TIMESTAMP,
 	
-	CONSTRAINT fk_photos_users FOREIGN KEY (userID) REFERENCES users(userID)
+	CONSTRAINT pk_photos PRIMARY KEY (photoID),
+	CONSTRAINT fk_photos_users FOREIGN KEY (userID) REFERENCES users(userID),
+	CONSTRAINT fk_photos_photoCategories FOREIGN KEY (categoryID) REFERENCES photoCategories(categoryID)
 );
 
 
