@@ -11,3 +11,5 @@ CREATE TABLE favoritePhotos(
 	CONSTRAINT fk_photos_photoIDFavorite FOREIGN KEY (photoIDFavorite) REFERENCES photos(photoID)
 
 );
+
+CREATE INDEX ON favoritePhotos(favoritedDate);
