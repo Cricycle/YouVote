@@ -12,3 +12,7 @@ SELECT * FROM winnerPhotos;
 
 --On the home page, below the winner's, recent uploads for photo categories are displayed.
 SELECT * FROM recentUploads;
+
+--Deleting a user
+SELECT * FROM deleteUser(5);
+SELECT * FROM users;
