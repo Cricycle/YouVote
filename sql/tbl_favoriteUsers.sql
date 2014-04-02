@@ -1,7 +1,7 @@
 
 CREATE TABLE favoriteUsers(
 	
-	userIDOwner		TIMESTAMP,
+	userIDOwner		INT,
 	userIDFavorite		INT,
 	favoritedDate		TIMESTAMP,
 
