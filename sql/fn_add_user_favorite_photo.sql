@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION add_user_favorite_photo (INT, INT)
+CREATE OR REPLACE FUNCTION add_user_favorite_photo (userIDOwner INT, photoIDFavorite INT)
 RETURNS BOOLEAN AS $$
 BEGIN
 	INSERT INTO favoritePhotos(userIDOwner, photoIDFavorite, favoritedDate)
