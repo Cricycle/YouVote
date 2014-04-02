@@ -3,6 +3,7 @@ CREATE TABLE comments(
 
 	commentID 		SERIAL,
 	photoID 		INT,
+	comment			VARCHAR(2000) NOT NULL,
 	commentTime		TIMESTAMP,
 	userID			INT,
 	editDate		TIMESTAMP,
