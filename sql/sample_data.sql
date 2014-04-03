@@ -2,6 +2,7 @@
 DELETE FROM photos;
 DELETE FROM photoCategories;
 DELETE FROM users;
+DELETE FROM favoritePhotos;
 
 ALTER SEQUENCE users_userid_seq RESTART WITH 1;
 ALTER SEQUENCE photocategories_categoryid_seq RESTART WITH 1;
@@ -32,6 +33,25 @@ INSERT INTO photos(imagePath, userID, categoryID, description, imageSize, upload
 	('image18_path_m', 3, 2, 'u', 256, '3-28-2014'),
 	('image19_path_k', 4, 2, 'j', 512, '3-29-2014'),
 	('image20_path_af', 6, 1, 'k', 1024, '3-30-2014');
+
+INSERT INTO favoritePhotos(userIDOwner, photoIDfavorite, favoritedDate) VALUES
+	(1, 1, '3-20-2014'),
+	(1, 2, '3-21-2014'),
+	(1, 3, '3-22-2014'),
+	(1, 4, '3-23-2014'),
+	(1, 5, '3-24-2014'),
+	(1, 6, '3-25-2014'),
+	(1, 7, '3-26-2014'),
+	(1, 8, '3-27-2014'),
+	(1, 9, '3-28-2014'),
+	(1, 10, '3-20-2014'),
+	(1, 11, '3-20-2014'),
+	(2, 1, '3-27-2014'),
+	(2, 2, '3-27-2014'),
+	(2, 9, '3-27-2014'),
+	(2, 10, '3-20-2014'),
+	(5, 7, '3-29-2014');
+	
 
 INSERT INTO votes(userID, photoID, voteDate) VALUES
 	(1, 1, '3-27-2014'),
