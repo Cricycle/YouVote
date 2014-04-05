@@ -41,13 +41,14 @@ public class SavePerson extends HttpServlet {
             
             Integer userIDs = 0;
             String ID = request.getParameter("userID");
-            out.println("Test: " + ID);
+            //out.println("Test: " + ID);
             userIDs = Integer.parseInt(ID);
             
-            String sqlStatementInsert = "INSERT INTO users(email, password, firstname, lastname)"
+            String sqlStatementInsert = "INSERT INTO users(username, email, passwordhash, firstname, lastname)"
                     + " VALUES(" 
+                    + "'" + request.getParameter("username") + "', "
                     + "'" + request.getParameter("email") + "', "
-                    + "'" + request.getParameter("password") + "', "
+                    + "'" + request.getParameter("passwordhash") + "', "
                     + "'" + request.getParameter("firstname") + "', "
                     + "'" + request.getParameter("lastname") + "'"
                     + ")";
@@ -55,7 +56,7 @@ public class SavePerson extends HttpServlet {
             String sqlStatementUpdate;
             sqlStatementUpdate = "UPDATE Users "
                 + "set email = '" + request.getParameter("email") + "', "
-                + "password = '" + request.getParameter("password") + "', "
+                + "passwordhash = '" + request.getParameter("passwordhash") + "', "
                 + "firstname = '" + request.getParameter("firstname") + "', "
                 + "lastname = '" + request.getParameter("lastname") + "'"
                 + " where userID = " + userIDs;

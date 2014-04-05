@@ -31,9 +31,9 @@
 		<div class="container">
 			<div class="header">
 				<h1>YouVote<span>for your favorite photo</span></h1>
-				<h2>Featured</h2>
 			</div>
-			<div class="content example7">
+			<div class="featured">
+                                <h2>Featured</h2>
 				<div id="tj_container" class="tj_container">
 					<div class="tj_nav">
 						<span id="tj_prev" class="tj_prev">Previous</span>
@@ -82,6 +82,23 @@
                                         <li><a href="photos.jsp">Travel</a></li>
                                         <li><a href="photos.jsp">Underwater</a></li>
 				</ul>
+			</div>
+			<div class="recentuploads">
+                                <h2>Recent Uploads</h2>
+				<div id="tj_container" class="tj_container">
+					<div class="tj_wrapper">
+						<ul class="tj_gallery">
+							<li><a href="#"><img src="images/9.jpg" alt="image09" /></a></li>
+							<li><a href="#"><img src="images/10.jpg" alt="image10" /></a></li>
+							<li><a href="#"><img src="images/11.jpg" alt="image11" /></a></li>
+							<li><a href="#"><img src="images/12.jpg" alt="image12" /></a></li>
+							<li><a href="#"><img src="images/13.jpg" alt="image13" /></a></li>
+							<li><a href="#"><img src="images/14.jpg" alt="image14" /></a></li>
+							<li><a href="#"><img src="images/15.jpg" alt="image15" /></a></li>
+							<li><a href="#"><img src="images/16.jpg" alt="image16" /></a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 		

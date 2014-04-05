@@ -41,7 +41,7 @@
                                         <input class="textbox" value="<%out.print(userID.toString());%>" name="userID" type="hidden">
                                         <table border="0" cellpadding="10">
                                             <tr class="trfield"><td class="tdfield"><h2>Email Address</h2></td><td><input class="textbox" type="text" name="email" <%out.println("value=\""+user.email+"\"");%>></td></tr>
-                                            <tr class="trfield"><td class="tdfield"><h2>Password</h2></td><td><input class="textbox" type="password" name="password" <%out.println("value=\""+user.password+"\"");%>></td></tr>
+                                            <tr class="trfield"><td class="tdfield"><h2>Password</h2></td><td><input class="textbox" type="password" name="passwordhash" <%out.println("value=\""+user.passwordhash+"\"");%>></td></tr>
                                             <tr class="trfield"><td class="tdfield"><h2>First Name</h2></td><td><input class="textbox" type="text" name="firstname" <%out.println("value=\""+user.firstname+"\"");%>></td></tr>
                                             <tr class="trfield"><td class="tdfield"><h2>Last Name</h2></td><td><input class="textbox" type="text" name="lastname" <%out.println("value=\""+user.lastname+"\"");%>></td></tr>
                                         </table>

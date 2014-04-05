@@ -19,8 +19,9 @@ public class JDBFunctions {
     private ResultSet resultSet = null;
     public int LoggedInID;
     public int userID;
+    public String username;
     public String email;
-    public String password;
+    public String passwordhash;
     public String firstname;
     public String lastname;
     
@@ -31,7 +32,7 @@ public class JDBFunctions {
             // This will load the PostgreSQL driver, each DB has its own driver
             Class.forName("org.postgresql.Driver");
             // Setup the connection with the DB
-            connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/YouVote", "postgres", "chelocean");
+            connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Project", "postgres", "chelocean");
             statement = connect.createStatement();
             statement.executeUpdate(SQL);
         }
@@ -47,7 +48,7 @@ public class JDBFunctions {
         try
         {
             Class.forName("org.postgresql.Driver");
-            connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/YouVote", "postgres", "chelocean");
+            connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Project", "postgres", "chelocean");
             statement = connect.createStatement();
             rs = statement.executeQuery(SQL);
         }
@@ -58,12 +59,12 @@ public class JDBFunctions {
         return rs;
     }
     
-    public boolean login(String email, String password) throws Exception
+    public boolean login(String username, String passwordhash) throws Exception
     {
         String SQLstatement;
         boolean result = false;
         
-        SQLstatement = "SELECT COUNT(*) as cnt, userID FROM Users WHERE upper(email) = upper('" + email + "') AND password = '" + password + "' GROUP BY userID"; 
+        SQLstatement = "SELECT COUNT(*) as cnt, userID FROM Users WHERE upper(username) = upper('" + username + "') AND passwordhash = '" + passwordhash + "' GROUP BY userID"; 
         
         resultSet = select(SQLstatement);
         
@@ -120,8 +121,9 @@ public class JDBFunctions {
             if(resultSet.next())
             {
                 userID = resultSet.getInt("userID");
+                username = resultSet.getString("username");
                 email = resultSet.getString("email");
-                password = resultSet.getString("password");
+                passwordhash = resultSet.getString("passwordhash");
                 firstname = resultSet.getString("firstname");
                 lastname = resultSet.getString("lastname");
             }

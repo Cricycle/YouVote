@@ -34,7 +34,7 @@ public class Login extends HttpServlet {
            JDBFunctions user = new JDBFunctions(); 
            try
             {
-                if(user.login(request.getParameter("email"), request.getParameter("password")))
+                if(user.login(request.getParameter("username"), request.getParameter("passwordhash")))
                 {        
                     user.session = request.getSession(true);
                     user.saveLoginID(user.LoggedInID);
