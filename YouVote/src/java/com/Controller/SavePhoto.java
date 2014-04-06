@@ -1,3 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package com.Controller;
 
 import java.io.IOException;
@@ -7,16 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.Model.JDBFunctions;
-import com.Model.JMD5Hash;
-import java.sql.ResultSet;
-import javax.servlet.http.HttpSession;
-
 /**
  *
  * @author Chelsea
  */
-public class Login extends HttpServlet {
+public class SavePhoto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,28 +32,16 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-           JDBFunctions user = new JDBFunctions(); 
-           JMD5Hash hash = new JMD5Hash();
-
-           try
-            {
-                if(user.login(request.getParameter("username"), hash.md5(request.getParameter("passwordhash"))))
-                {        
-                    user.session = request.getSession(true);
-                    user.saveLoginID(user.LoggedInID);
-                    response.sendRedirect("index.jsp");
-                }
-                else
-                {
-                    response.sendRedirect("relogin.jsp");
-                    //out.println(hash.md5(request.getParameter("passwordhash")) + request.getParameter("salt"));
-                }
-            }
-            catch(Exception e)
-            {
-                System.out.println(e);
-            }
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SavePhoto</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet SavePhoto at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

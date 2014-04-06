@@ -11,22 +11,6 @@
 	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
         <link rel="shortcut icon" href="images/tu.ico">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-		<script type="text/javascript" src="js/jquery.gridnav.js"></script>
-		<script type="text/javascript">
-			$(function() {
-				$('#tj_container').gridnav({
-					type	: {
-						mode		: 'showhide', 	// use def | fade | seqfade | updown | sequpdown | showhide | disperse | rows
-						speed		: 500,			// for fade, seqfade, updown, sequpdown, showhide, disperse, rows
-						easing		: '',			// for fade, seqfade, updown, sequpdown, showhide, disperse, rows	
-						factor		: '',			// for seqfade, sequpdown, rows
-						reverse		tj: ''			// for sequpdown
-					}
-				});
-			});
-		</script>
     </head>
     <body>
 		<div class="container">

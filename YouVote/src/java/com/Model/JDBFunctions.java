@@ -64,7 +64,10 @@ public class JDBFunctions {
         String SQLstatement;
         boolean result = false;
         
-        SQLstatement = "SELECT COUNT(*) as cnt, userID FROM Users WHERE upper(username) = upper('" + username + "') AND passwordhash = '" + passwordhash + "' GROUP BY userID"; 
+        SQLstatement = "SELECT COUNT(*) as cnt, userID "
+                + "FROM Users WHERE upper(username) = upper('" + username + "') "
+                + "AND passwordhash = '" + passwordhash
+                + "' GROUP BY userID"; 
         
         resultSet = select(SQLstatement);
         

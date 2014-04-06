@@ -92,10 +92,6 @@
 							<li><a href="#"><img src="images/10.jpg" alt="image10" /></a></li>
 							<li><a href="#"><img src="images/11.jpg" alt="image11" /></a></li>
 							<li><a href="#"><img src="images/12.jpg" alt="image12" /></a></li>
-							<li><a href="#"><img src="images/13.jpg" alt="image13" /></a></li>
-							<li><a href="#"><img src="images/14.jpg" alt="image14" /></a></li>
-							<li><a href="#"><img src="images/15.jpg" alt="image15" /></a></li>
-							<li><a href="#"><img src="images/16.jpg" alt="image16" /></a></li>
 						</ul>
 					</div>
 				</div>

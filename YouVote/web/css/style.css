@@ -3,7 +3,7 @@ body{
 	background:#f7f7f7 url(../images/paper_2.png) repeat top left;
 	color:#000;
         font-family: 'Oswald', 'Myriad Pro', arial, serif;
-	font-size:12px;
+	font-size:14px;
 	overflow-y:scroll;
 }
 a{

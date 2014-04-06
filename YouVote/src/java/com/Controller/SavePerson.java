@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.Model.JDBFunctions;
+import com.Model.JMD5Hash;
 
 /**
  *
@@ -38,17 +39,31 @@ public class SavePerson extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
             JDBFunctions user = new JDBFunctions();
+            JMD5Hash hash = new JMD5Hash();
             
             Integer userIDs = 0;
             String ID = request.getParameter("userID");
             //out.println("Test: " + ID);
             userIDs = Integer.parseInt(ID);
             
+            // Salt Code
+            String SALTCHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            StringBuffer salt = new StringBuffer();
+            java.util.Random rnd = new java.util.Random();
+            // build a random 9 chars salt     
+            while (salt.length()  < 9)
+            {
+                int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+                salt.append(SALTCHARS.substring(index, index+1));
+            }
+            String saltStr = salt.toString();
+            
             String sqlStatementInsert = "INSERT INTO users(username, email, passwordhash, firstname, lastname)"
                     + " VALUES(" 
                     + "'" + request.getParameter("username") + "', "
                     + "'" + request.getParameter("email") + "', "
-                    + "'" + request.getParameter("passwordhash") + "', "
+                    //+ "'" + saltStr + "', "
+                    + "'" + hash.md5(request.getParameter("passwordhash")) + "', "
                     + "'" + request.getParameter("firstname") + "', "
                     + "'" + request.getParameter("lastname") + "'"
                     + ")";
@@ -56,7 +71,7 @@ public class SavePerson extends HttpServlet {
             String sqlStatementUpdate;
             sqlStatementUpdate = "UPDATE Users "
                 + "set email = '" + request.getParameter("email") + "', "
-                + "passwordhash = '" + request.getParameter("passwordhash") + "', "
+                + "passwordhash = '" + hash.md5(request.getParameter("passwordhash")) + "', "
                 + "firstname = '" + request.getParameter("firstname") + "', "
                 + "lastname = '" + request.getParameter("lastname") + "'"
                 + " where userID = " + userIDs;
