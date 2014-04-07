@@ -58,12 +58,12 @@ public class SavePerson extends HttpServlet {
             }
             String saltStr = salt.toString();
             
-            String sqlStatementInsert = "INSERT INTO users(username, email, passwordhash, firstname, lastname)"
+            String sqlStatementInsert = "INSERT INTO users(username, email, salt, passwordhash, firstname, lastname)"
                     + " VALUES(" 
                     + "'" + request.getParameter("username") + "', "
                     + "'" + request.getParameter("email") + "', "
-                    //+ "'" + saltStr + "', "
-                    + "'" + hash.md5(request.getParameter("passwordhash")) + "', "
+                    + "'" + saltStr + "', "
+                    + "'" + hash.md5(request.getParameter("passwordhash") + saltStr) + "', "
                     + "'" + request.getParameter("firstname") + "', "
                     + "'" + request.getParameter("lastname") + "'"
                     + ")";

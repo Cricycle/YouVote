@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.http.HttpSession;
+import com.Model.JMD5Hash;
 
 /**
  *
@@ -17,6 +18,7 @@ public class JDBFunctions {
     public HttpSession session = null;
    
     private ResultSet resultSet = null;
+    private ResultSet rs = null;
     public int LoggedInID;
     public int userID;
     public String username;
@@ -62,11 +64,34 @@ public class JDBFunctions {
     public boolean login(String username, String passwordhash) throws Exception
     {
         String SQLstatement;
+        String salt = "";
         boolean result = false;
+        
+        SQLstatement = "SELECT salt "
+                       + "FROM users "
+                       + "WHERE upper(username) = upper('" + username + "') "
+                       + "GROUP BY userID";
+        
+        rs = select(SQLstatement);
+        
+        try
+        {
+            if(rs.next())
+            {
+                salt = rs.getString("salt");
+            }
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e);
+        }
+        
+        
+        JMD5Hash hash = new JMD5Hash();
         
         SQLstatement = "SELECT COUNT(*) as cnt, userID "
                 + "FROM Users WHERE upper(username) = upper('" + username + "') "
-                + "AND passwordhash = '" + passwordhash
+                + "AND passwordhash = '" + hash.md5(passwordhash + salt)
                 + "' GROUP BY userID"; 
         
         resultSet = select(SQLstatement);
