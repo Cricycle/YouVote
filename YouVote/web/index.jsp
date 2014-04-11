@@ -67,6 +67,19 @@
                                     </div>
                             </div>
                     </div>
+                       
+                       	<div class="more">
+				<ul>
+					<li>Featured Categories:</li>
+                                        <li class="selected"><a href="index.jsp">Winners</a></li>
+					<li><a href="photos.jsp">Animals</a></li>
+					<li><a href="photos.jsp">Fashion</a></li>
+					<li><a href="photos.jsp">Food</a></li>
+					<li><a href="photos.jsp">Landscape</a></li>
+					<li><a href="photos.jsp">Still Life</a></li>
+                                        <li><a href="photos.jsp">Travel</a></li>
+				</ul>
+			</div>
                    </div>
        
 		<!-- The JavaScript -->
@@ -340,7 +353,7 @@
 				
 				$.fn.parallaxSlider.defaults = {
 					auto			: 0,	//how many seconds to periodically slide the content.
-											//If set to 0 then autoplay is turned off.
+									//If set to 0 then autoplay is turned off.
 					speed			: 1000,//speed of each slide animation
 					easing			: 'jswing',//easing effect for the slide animation
 					easingBg		: 'jswing',//easing effect for the background animation
