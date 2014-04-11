@@ -14,18 +14,12 @@
 			<div class="footer">
 				<a href="index.jsp"><span>Home</span></a>
                                 <a href="upload.jsp"><span>Upload</span></a>
-                                <a href="photos.jsp">Aerial</a>
-                                <a href="photos.jsp">Action</a>
-                                <a href="photos.jsp">Black and White</a>
-                                <a href="photos.jsp">Candid</a>
+                                <a href="photos.jsp">Animals</a>
                                 <a href="photos.jsp">Fashion</a>
                                 <a href="photos.jsp">Food</a>
                                 <a href="photos.jsp">Landscape</a>
-                                <a href="photos.jsp">Nature</a>
-                                <a href="photos.jsp">Night</a>
                                 <a href="photos.jsp">Still Life</a>
                                 <a href="photos.jsp">Travel</a>
-                                <a href="photos.jsp">Underwater</a>
 				<span class="right_ab">
                                     <%
                                         JDBFunctions user = new JDBFunctions();
