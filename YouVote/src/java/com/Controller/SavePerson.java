@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.Model.JDBFunctions;
 import com.Model.JMD5Hash;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,6 +36,7 @@ public class SavePerson extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -58,30 +63,40 @@ public class SavePerson extends HttpServlet {
             }
             String saltStr = salt.toString();
             
-            String sqlStatementInsert = "INSERT INTO users(username, email, salt, passwordhash, firstname, lastname)"
-                    + " VALUES(" 
-                    + "'" + request.getParameter("username") + "', "
-                    + "'" + request.getParameter("email") + "', "
-                    + "'" + saltStr + "', "
-                    + "'" + hash.md5(request.getParameter("passwordhash") + saltStr) + "', "
-                    + "'" + request.getParameter("firstname") + "', "
-                    + "'" + request.getParameter("lastname") + "'"
-                    + ")";
             
-            String sqlStatementUpdate;
-            sqlStatementUpdate = "UPDATE Users "
-                + "set email = '" + request.getParameter("email") + "', "
-                + "passwordhash = '" + hash.md5(request.getParameter("passwordhash")) + "', "
-                + "firstname = '" + request.getParameter("firstname") + "', "
-                + "lastname = '" + request.getParameter("lastname") + "'"
-                + " where userID = " + userIDs;
-       
+            String sqlStatementInsert = "INSERT INTO users(username, email, salt, passwordhash, firstname, lastname) VALUES( ?, ?, ?, ?, ?, ?)";
+                //System.out.println("Created sqlStatementInsert");         
+            PreparedStatement insertUser = user.getNewPreparedStatement(sqlStatementInsert);
+                //System.out.println("Created prepared statement sqlStatementInsert");
+            insertUser.setString(1,request.getParameter("username"));
+            insertUser.setString(2,request.getParameter("email"));
+            insertUser.setString(3,saltStr);
+            insertUser.setString(4,hash.md5(request.getParameter("passwordhash") + saltStr));
+            insertUser.setString(5,request.getParameter("firstname"));
+            insertUser.setString(6,request.getParameter("lastname"));
+                //System.out.println("Set prepared statement sqlStatementInsert");
+                //System.out.println(sqlStatementInsert +" first name " + request.getParameter("firstname") + " last name " + request.getParameter("lastname"));
+                
+            
+            String sqlStatementUpdate = "UPDATE Users set email = ?, salt = ?, passwordhash = ?, firstname = ?, lastname = ? where userID = ?";
+                //System.out.println("Created sqlStatementUpdate");
+            
+            PreparedStatement updateUser = user.getNewPreparedStatement(sqlStatementUpdate);
+                //System.out.println("Created prepared sqlStatementUpdate");
+            updateUser.setString(1,request.getParameter("email"));
+            updateUser.setString(2,saltStr);
+            updateUser.setString(3,hash.md5(request.getParameter("passwordhash") + saltStr));
+            updateUser.setString(4,request.getParameter("firstname"));
+            updateUser.setString(5,request.getParameter("lastname"));
+            updateUser.setInt(6,userIDs);
+                //System.out.println("Set prepared statement sqlStatementUpdate");
+                //System.out.println(sqlStatementUpdate);
             
             if(userIDs == 0)
             {
                 try
                 {
-                    user.execute(sqlStatementInsert);
+                    user.execute(insertUser);
                     response.sendRedirect("index.jsp");
                 }
                 catch(Exception e)
@@ -93,7 +108,7 @@ public class SavePerson extends HttpServlet {
             {
                 try
                 {
-                    user.execute(sqlStatementUpdate);
+                    user.execute(updateUser);
                     response.sendRedirect("accountinfo.jsp");
                 }
                 catch(Exception e)
@@ -104,6 +119,9 @@ public class SavePerson extends HttpServlet {
             
             user.session = request.getSession(true);
             user.saveUserID(userIDs);
+        } catch (SQLException ex) {
+            Logger.getLogger(SavePerson.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Catch statement of SavePerson");
         }
     }
 
@@ -119,7 +137,7 @@ public class SavePerson extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processRequest(request, response);
     }
 
     /**
@@ -133,7 +151,7 @@ public class SavePerson extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processRequest(request, response);
     }
 
     /**

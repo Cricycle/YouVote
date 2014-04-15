@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.http.HttpSession;
 import com.Model.JMD5Hash;
+import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,37 +30,39 @@ public class JDBFunctions {
     public String firstname;
     public String lastname;
     
-    public void execute(String SQL) throws SQLException
-    {
+    public JDBFunctions(){
         try
         {
             // This will load the PostgreSQL driver, each DB has its own driver
             Class.forName("org.postgresql.Driver");
             // Setup the connection with the DB
-            connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Project", "postgres", "chelocean");
-            statement = connect.createStatement();
-            statement.executeUpdate(SQL);
+            connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/YouVote", "postgres", "MMrrooww88");
         }
         catch(ClassNotFoundException e)
         {
             System.out.println("Exception: " + e);
         }
+        catch(SQLException ex)
+        {
+            System.out.println("Exception: " + ex);
+        }
+    }
+    
+    public void execute(PreparedStatement prepSQL) throws SQLException
+    {
+         prepSQL.executeUpdate();
+       
+    }
+    
+    public PreparedStatement getNewPreparedStatement(String s) throws SQLException{
+          return connect.prepareStatement(s);
     }
     
     public ResultSet select(String SQL) throws SQLException
     {
         ResultSet rs = null;
-        try
-        {
-            Class.forName("org.postgresql.Driver");
-            connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Project", "postgres", "chelocean");
-            statement = connect.createStatement();
-            rs = statement.executeQuery(SQL);
-        }
-        catch(ClassNotFoundException e)
-        {
-            System.out.println("Exception: " + e);
-        }
+        statement = connect.createStatement();
+        rs = statement.executeQuery(SQL);
         return rs;
     }
     
@@ -73,6 +78,7 @@ public class JDBFunctions {
                        + "GROUP BY userID";
         
         rs = select(SQLstatement);
+        System.out.println(SQLstatement);
         
         try
         {
@@ -95,7 +101,7 @@ public class JDBFunctions {
                 + "' GROUP BY userID"; 
         
         resultSet = select(SQLstatement);
-        
+        System.out.println(SQLstatement);
         try
         {
             if(resultSet.next())
@@ -113,7 +119,7 @@ public class JDBFunctions {
         }
         catch(SQLException e)
         {
-            System.out.println(e);
+            System.out.println("Exception in JDBFunctions: " + e);
         }
         
         return result;
