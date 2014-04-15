@@ -1,4 +1,10 @@
-﻿CREATE OR REPLACE FUNCTION edit_user_comment(commentID INT, newComment VARCHAR(2000))
+/*
+ * Wrapped functionality allowing the editting of a comment
+ *
+ * @Author: Alex
+ */
+
+CREATE OR REPLACE FUNCTION fn_edit_user_comment(commentID INT, newComment VARCHAR(2000))
 RETURNS BOOLEAN
 AS $$
 BEGIN

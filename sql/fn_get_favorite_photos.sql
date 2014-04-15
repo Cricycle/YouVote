@@ -1,4 +1,10 @@
-CREATE OR REPLACE FUNCTION get_user_favorite_photos(userID INT, lowRow INT, highRow INT)
+/*
+ * Retrieves the favorite photos of a given user, ordered by favorited date
+ *
+ * @Author: Alex
+ */
+
+CREATE OR REPLACE FUNCTION fn_get_favorite_photos(userID INT, lowRow INT, highRow INT)
 RETURNS TABLE (
 	photoID INT
 ) AS $$
@@ -6,7 +12,7 @@ BEGIN
 	RETURN QUERY
 		WITH cte1 AS (
 			SELECT photoIDfavorite AS photoID, ROW_NUMBER() OVER (ORDER BY favoritedDate DESC) AS rowNum
-			FROM favoritePhotos
+			FROM tbl_favorite_photos
 			WHERE userIDOwner = $1
 		)
 		SELECT cte1.photoID AS photoID

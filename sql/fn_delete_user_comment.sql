@@ -1,4 +1,10 @@
-﻿CREATE OR REPLACE FUNCTION delete_user_comment(commentID INT)
+/*
+ * Wrapper to delete a user comment
+ *
+ * @Author: Alex
+ */
+
+CREATE OR REPLACE FUNCTION fn_delete_user_comment(commentID INT)
 RETURNS BOOLEAN
 AS $$
 BEGIN

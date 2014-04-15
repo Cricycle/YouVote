@@ -1,4 +1,10 @@
-﻿CREATE OR REPLACE FUNCTION rank_users_by_votes(topX INT DEFAULT 20)
+/*
+ * Retrieves a list of the topX users, when they are sorted by total number of votes
+ *
+ * @Author: Alex
+ */
+
+CREATE OR REPLACE FUNCTION fn_rank_users_by_votes(topX INT DEFAULT 20)
 RETURNS TABLE (
 	userID		INT,
 	totalVotes	BIGINT,
@@ -7,10 +13,10 @@ RETURNS TABLE (
 BEGIN
 	RETURN QUERY
 		WITH cte1 AS (
-			SELECT photos.userID AS userID, COUNT(*) AS totalVotes, RANK() OVER (ORDER BY COUNT(*) DESC) AS rank
-			FROM votes, photos
-			WHERE votes.photoID = photos.photoID
-			GROUP BY photos.userID
+			SELECT p.userID AS userID, COUNT(*) AS totalVotes, RANK() OVER (ORDER BY COUNT(*) DESC) AS rank
+			FROM tbl_votes AS v, tbl_photos AS p
+			WHERE v.photoID = p.photoID
+			GROUP BY p.userID
 		)
 		SELECT cte1.userID, cte1.totalVotes, cte1.rank
 		FROM cte1
