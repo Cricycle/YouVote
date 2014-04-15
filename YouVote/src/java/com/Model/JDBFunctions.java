@@ -78,7 +78,7 @@ public class JDBFunctions {
                        + "GROUP BY userID";
         
         rs = select(SQLstatement);
-        System.out.println(SQLstatement);
+        //System.out.println(SQLstatement);
         
         try
         {
@@ -101,7 +101,7 @@ public class JDBFunctions {
                 + "' GROUP BY userID"; 
         
         resultSet = select(SQLstatement);
-        System.out.println(SQLstatement);
+        //System.out.println(SQLstatement);
         try
         {
             if(resultSet.next())

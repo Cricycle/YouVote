@@ -32,6 +32,7 @@
                                             <button class="btn btn-4 btn-4c icon-arrow-right">Save</button>
                                       </form>
                                         <form action="DeletePerson" method=post">
+                                             <input class="textbox" value="<%out.print(userID.toString());%>" name="userID" type="hidden">
                                             <button class="btn btn-4 btn-4c icon-arrow-right">Delete Account</button>
                                         </form>
                                               
