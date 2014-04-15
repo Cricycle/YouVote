@@ -8,10 +8,10 @@ CREATE OR REPLACE FUNCTION fn_edit_user_comment(commentID INT, newComment VARCHA
 RETURNS BOOLEAN
 AS $$
 BEGIN
-	UPDATE comments
+	UPDATE tbl_comments
 	SET comment = $2,
 		editDate = NOW()
-	WHERE comments.commentID = $1;
+	WHERE tbl_comments.commentID = $1;
 		RETURN TRUE;
 	EXCEPTION WHEN OTHERS THEN
 		RETURN FALSE;

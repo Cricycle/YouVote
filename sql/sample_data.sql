@@ -1,4 +1,4 @@
-DELETE FROM tbl_votes;
+﻿DELETE FROM tbl_votes;
 DELETE FROM tbl_comments;
 DELETE FROM tbl_winners;
 DELETE FROM tbl_favorite_photos;
@@ -7,7 +7,7 @@ DELETE FROM tbl_photo_categories;
 DELETE FROM tbl_users;
 
 ALTER SEQUENCE tbl_users_userid_seq RESTART WITH 1;
-ALTER SEQUENCE tbl_photocategories_categoryid_seq RESTART WITH 1;
+ALTER SEQUENCE tbl_photo_categories_categoryid_seq RESTART WITH 1;
 ALTER SEQUENCE tbl_photos_photoid_seq RESTART WITH 1;
 ALTER SEQUENCE tbl_comments_commentid_seq RESTART WITH 1;
 
@@ -56,7 +56,7 @@ INSERT INTO tbl_favorite_photos(userIDOwner, photoIDfavorite, favoritedDate) VAL
 	(5, 7, '3-29-2014');
 	
 
-INSERT INTO tbl_votes(userID, photoID, voteDate) VALUES
+INSERT INTO tbl_votes(userID, photoID, voteTime) VALUES
 	(1, 1, '3-27-2014'),
 	(1, 2, '3-27-2014'),
 	(1, 3, '3-27-2014'),

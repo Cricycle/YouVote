@@ -9,7 +9,7 @@ CREATE OR REPLACE FUNCTION fn_add_vote(userIDvoter INT, photoID INT)
 RETURNS BOOLEAN
 AS $$
 BEGIN
-	INSERT INTO tbl_votes(userID, photoID, voteDate) VALUES ($1, $2, NOW());
+	INSERT INTO tbl_votes(userID, photoID, voteTime) VALUES ($1, $2, NOW());
 		RETURN TRUE;
 	EXCEPTION WHEN OTHERS THEN
 		RETURN FALSE;

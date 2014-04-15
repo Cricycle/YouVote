@@ -9,7 +9,7 @@ RETURNS TABLE
 	(imagePath 		VARCHAR(250), 
 	description 	VARCHAR(100), 
 	uploadDate 		TIMESTAMP,
-	categoryID		BIGINT,
+	categoryID		INT,
 	shortName 		VARCHAR(25)) AS $$
 BEGIN
     RETURN QUERY
