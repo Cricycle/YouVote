@@ -5,10 +5,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.http.HttpSession;
-import com.Model.JMD5Hash;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.File;
+import java.util.*;
+import java.io.*;
 
 /**
  *
@@ -30,21 +36,31 @@ public class JDBFunctions {
     public String firstname;
     public String lastname;
     
+    private static final String dbPropertiesFile =
+        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
+        "<!DOCTYPE properties SYSTEM \"http://java.sun.com/dtd/properties.dtd\">\n" +
+        "<properties>\n" +
+        "<comment>no comments</comment>\n" +
+        "<entry key=\"user\">postgres</entry>\n" +
+        "<entry key=\"password\">chelocean</entry>\n" +
+        "<entry key=\"dbhost\">localhost</entry>\n" +
+        "<entry key=\"dbport\">5432</entry>\n" +
+        "<entry key=\"dbname\">YouVote</entry>\n" +
+        "</properties>";
+    private static final String dbConnString = "jdbc:postgresql://%s:%s/%s";
+    
     public JDBFunctions(){
-        try
-        {
-            // This will load the PostgreSQL driver, each DB has its own driver
-            Class.forName("org.postgresql.Driver");
-            // Setup the connection with the DB
-            connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/YouVote", "postgres", "MMrrooww88");
+        Properties props = new Properties();
+        try {
+            ByteArrayInputStream in = new ByteArrayInputStream(dbPropertiesFile.getBytes("UTF-8"));
+            props.loadFromXML(in);
+        } catch (IOException e) {
+            throw new RuntimeException(e.toString());
         }
-        catch(ClassNotFoundException e)
-        {
-            System.out.println("Exception: " + e);
-        }
-        catch(SQLException ex)
-        {
-            System.out.println("Exception: " + ex);
+        try {
+            connect = getConnection(props);
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBFunctions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -73,7 +89,7 @@ public class JDBFunctions {
         boolean result = false;
         
         SQLstatement = "SELECT salt "
-                       + "FROM users "
+                       + "FROM tbl_users "
                        + "WHERE upper(username) = upper('" + username + "') "
                        + "GROUP BY userID";
         
@@ -93,11 +109,11 @@ public class JDBFunctions {
         }
         
         
-        JMD5Hash hash = new JMD5Hash();
+        JSHA512Hash hash = new JSHA512Hash();
         
         SQLstatement = "SELECT COUNT(*) as cnt, userID "
-                + "FROM Users WHERE upper(username) = upper('" + username + "') "
-                + "AND passwordhash = '" + hash.md5(passwordhash + salt)
+                + "FROM tbl_users WHERE upper(username) = upper('" + username + "') "
+                + "AND passwordhash = '" + hash.sha512(passwordhash + salt, 50)
                 + "' GROUP BY userID"; 
         
         resultSet = select(SQLstatement);
@@ -148,7 +164,7 @@ public class JDBFunctions {
     public void getUserInfo(Integer pUserID)
     {
         String sql;
-        sql = "SELECT * FROM Users WHERE userID = " + pUserID.toString(); 
+        sql = "SELECT * FROM tbl_users WHERE userID = " + pUserID.toString(); 
         try
         {
             resultSet = select(sql);
@@ -166,5 +182,39 @@ public class JDBFunctions {
         {
             System.out.println(e);
         }
+    }
+    
+    private Connection getConnection(Properties props) throws SQLException {
+        try {
+            // This will load the PostgreSQL driver, each DB has its own driver
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(JDBFunctions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        int failCount = 0;
+        boolean successful = false;
+        Connection conn = null;
+        SQLException excep = null;
+        String customDBConnString = String.format(dbConnString, props.getProperty("dbhost"), props.getProperty("dbport"), props.getProperty("dbname"));
+        while (failCount < 5 && !successful) {
+            try {
+                conn = DriverManager.getConnection(customDBConnString, props);
+                successful = true;
+            } catch (SQLException e) {
+                excep = e;
+                ++failCount;
+                try {
+                    // sleep for short time to give time to recover from transient error
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    Logger.getLogger(JDBFunctions.class.getName()).log(Level.SEVERE, null, e1);
+                }
+            }
+        }
+        if (!successful) {
+            throw excep;
+        }
+        return conn;
     }
 }

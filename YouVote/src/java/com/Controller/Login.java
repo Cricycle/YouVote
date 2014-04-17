@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
 
            try
             {
-                if(user.login(request.getParameter("username"), request.getParameter("passwordhash")))
+                if(user.login(request.getParameter("username"), request.getParameter("password")))
                 {        
                     user.session = request.getSession(true);
                     user.saveLoginID(user.LoggedInID);
@@ -46,7 +46,8 @@ public class Login extends HttpServlet {
                 }
                 else
                 {
-                    response.sendRedirect("relogin.jsp");
+                    request.setAttribute("failedLogin", "true");
+                    request.getRequestDispatcher("account.jsp").forward(request, response);
                 }
             }
             catch(Exception e)

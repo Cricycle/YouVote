@@ -21,12 +21,17 @@
 			<div class="content">
                             
                                	<div id="tj_login" class="tj_login">
+                                    <% if(request != null && (request.getAttribute("failedLogin") != null)) { %>
+                                    <br>
+                                    <h2><i>Invalid login! Please try again.</i></h2>
+                                    <br>
+                                    <% } %>
                                     <h1>Login</h1>
                                         <form action="Login" method="post">
                                         <input class="textbox" value="" name="userID" type="hidden">
                                         <table border="0" cellpadding="10">
                                             <tr class="trfield"><td class="tdfield"><h2>Username</h2></td><td><input class="textbox" type="text" name="username"></td></tr>
-                                            <tr class="trfield"><td class="tdfield"><h2>Password</h2></td><td><input class="textbox" type="password" name="passwordhash"></td></tr>
+                                            <tr class="trfield"><td class="tdfield"><h2>Password</h2></td><td><input class="textbox" type="password" name="password"></td></tr>
                                         </table>
                                             <button class="btn btn-4 btn-4c icon-arrow-right">Login</button>
                                       </form>
@@ -37,11 +42,11 @@
                                         <form action="SavePerson" method="post">
                                         <input class="textbox" value="0" name="userID" type="hidden">
                                         <table border="0" cellpadding="10">
-                                            <tr class="trfield"><td class="tdfield"><h2>Username</h2></td><td><input class="textbox" type="text" name="username"></td></tr>
-                                            <tr class="trfield"><td class="tdfield"><h2>Email Address</h2></td><td><input class="textbox" type="text" name="email"></td></tr>
-                                            <tr class="trfield"><td class="tdfield"><h2>Password</h2></td><td><input class="textbox" type="password" name="passwordhash"></td></tr>
-                                            <tr class="trfield"><td class="tdfield"><h2>First Name</h2></td><td><input class="textbox" type="text" name="firstname"></td></tr>
-                                            <tr class="trfield"><td class="tdfield"><h2>Last Name</h2></td><td><input class="textbox" type="text" name="lastname"></td></tr>
+                                            <tr class="trfield"><td class="tdfield"><h2>Username</h2></td><td><input class="textbox" type="text" name="username" required></td></tr>
+                                            <tr class="trfield"><td class="tdfield"><h2>Email Address</h2></td><td><input class="textbox" type="text" name="email" required></td></tr>
+                                            <tr class="trfield"><td class="tdfield"><h2>Password</h2></td><td><input class="textbox" type="password" name="password" required></td></tr>
+                                            <tr class="trfield"><td class="tdfield"><h2>First Name</h2></td><td><input class="textbox" type="text" name="firstname" required></td></tr>
+                                            <tr class="trfield"><td class="tdfield"><h2>Last Name</h2></td><td><input class="textbox" type="text" name="lastname" required></td></tr>
                                         </table>
                                             <button class="btn btn-4 btn-4c icon-arrow-right">Create</button>
                                       </form>
