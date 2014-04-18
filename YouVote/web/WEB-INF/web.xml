@@ -8,6 +8,18 @@
         <servlet-name>SavePhoto</servlet-name>
         <servlet-class>com.Controller.SavePhoto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SubmitComment</servlet-name>
+        <servlet-class>com.Controller.SubmitComment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Vote</servlet-name>
+        <servlet-class>com.Controller.Vote</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Report</servlet-name>
+        <servlet-class>com.Controller.Report</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login/*</url-pattern>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>SavePhoto</servlet-name>
         <url-pattern>/SavePhoto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubmitComment</servlet-name>
+        <url-pattern>/SubmitComment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Vote</servlet-name>
+        <url-pattern>/Vote</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Report</servlet-name>
+        <url-pattern>/Report</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
