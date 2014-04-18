@@ -60,6 +60,7 @@ public class JDBFunctions {
         }
         try {
             connect = getConnection(props);
+            System.out.println(connect.toString());
         } catch (SQLException ex) {
             Logger.getLogger(JDBFunctions.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -72,87 +73,18 @@ public class JDBFunctions {
     }
     
     public PreparedStatement getNewPreparedStatement(String s) throws SQLException{
+        
         return connect.prepareStatement(s);        
     }
     
     public ResultSet select(PreparedStatement p) throws SQLException
     {
         ResultSet rs = null;
-        System.out.println("First in ResultSet");
         rs = p.executeQuery();
-        System.out.println("Second in ResultSet");
         
         return rs;
     }
-    
-    public boolean login(String username, String password) throws Exception
-    {
-        System.out.println("Beginning login");
-        String salt = "";
-        boolean result = false;
-        
-       
-        String getSaltOfUserString = "SELECT salt "
-                       + "FROM tbl_users "
-                       + "WHERE upper(username) = upper(?) "
-                       + "GROUP BY userID";
-
-           System.out.println(getSaltOfUserString);
-        PreparedStatement saltOfUser = this.getNewPreparedStatement(getSaltOfUserString);
-        System.out.println("before set int salt of user in login");
-        saltOfUser.setString(1,username);
-        
-        rs = select(saltOfUser);   
-        
-        try
-        {
-            if(rs.next())
-            {
-                salt = rs.getString("salt");
-            }
-        }
-        catch(SQLException e)
-        {
-            System.out.println("Query of salt error" + e);
-        }
-        
-        JSHA512Hash hash = new JSHA512Hash();
-        
-        String loginUserString = "SELECT COUNT(*) as cnt, userID "
-                + "FROM tbl_users WHERE upper(username) = upper(?) "
-                + "AND passwordhash = ? GROUP BY userID"; 
-        
-        PreparedStatement loginUser = this.getNewPreparedStatement(loginUserString);
-        loginUser.setString(1,username);
-        loginUser.setString(2, hash.sha512(password + salt, 50));
-
-        
-        
-        resultSet = select(loginUser);
-        //System.out.println(SQLstatement);
-        try
-        {
-            if(resultSet.next())
-            {
-                if(resultSet.getInt("cnt") > 0)
-                {
-                    result = true;
-                    LoggedInID = resultSet.getInt("userID");
-                }
-                else
-                {
-                    result = false;
-                }
-            }
-        }
-        catch(SQLException e)
-        {
-            System.out.println("Exception in JDBFunctions: " + e);
-        }
-        
-        return result;
-    }
-    
+ 
     public void saveLoginID(Integer pLoginID)
     {
         session.setAttribute("LoggedInID", pLoginID);
