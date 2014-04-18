@@ -42,6 +42,7 @@ public class JDBFunctions {
         "<properties>\n" +
         "<comment>no comments</comment>\n" +
         "<entry key=\"user\">postgres</entry>\n" +
+//        "<entry key=\"password\">MMrrooww88</entry>\n" +
         "<entry key=\"password\">chelocean</entry>\n" +
         "<entry key=\"dbhost\">localhost</entry>\n" +
         "<entry key=\"dbport\">5432</entry>\n" +
@@ -71,30 +72,37 @@ public class JDBFunctions {
     }
     
     public PreparedStatement getNewPreparedStatement(String s) throws SQLException{
-          return connect.prepareStatement(s);
+        return connect.prepareStatement(s);        
     }
     
-    public ResultSet select(String SQL) throws SQLException
+    public ResultSet select(PreparedStatement p) throws SQLException
     {
         ResultSet rs = null;
-        statement = connect.createStatement();
-        rs = statement.executeQuery(SQL);
+        System.out.println("First in ResultSet");
+        rs = p.executeQuery();
+        System.out.println("Second in ResultSet");
+        
         return rs;
     }
     
-    public boolean login(String username, String passwordhash) throws Exception
+    public boolean login(String username, String password) throws Exception
     {
-        String SQLstatement;
+        System.out.println("Beginning login");
         String salt = "";
         boolean result = false;
         
-        SQLstatement = "SELECT salt "
+       
+        String getSaltOfUserString = "SELECT salt "
                        + "FROM tbl_users "
-                       + "WHERE upper(username) = upper('" + username + "') "
+                       + "WHERE upper(username) = upper(?) "
                        + "GROUP BY userID";
+
+           System.out.println(getSaltOfUserString);
+        PreparedStatement saltOfUser = this.getNewPreparedStatement(getSaltOfUserString);
+        System.out.println("before set int salt of user in login");
+        saltOfUser.setString(1,username);
         
-        rs = select(SQLstatement);
-        //System.out.println(SQLstatement);
+        rs = select(saltOfUser);   
         
         try
         {
@@ -105,18 +113,22 @@ public class JDBFunctions {
         }
         catch(SQLException e)
         {
-            System.out.println(e);
+            System.out.println("Query of salt error" + e);
         }
-        
         
         JSHA512Hash hash = new JSHA512Hash();
         
-        SQLstatement = "SELECT COUNT(*) as cnt, userID "
-                + "FROM tbl_users WHERE upper(username) = upper('" + username + "') "
-                + "AND passwordhash = '" + hash.sha512(passwordhash + salt, 50)
-                + "' GROUP BY userID"; 
+        String loginUserString = "SELECT COUNT(*) as cnt, userID "
+                + "FROM tbl_users WHERE upper(username) = upper(?) "
+                + "AND passwordhash = ? GROUP BY userID"; 
         
-        resultSet = select(SQLstatement);
+        PreparedStatement loginUser = this.getNewPreparedStatement(loginUserString);
+        loginUser.setString(1,username);
+        loginUser.setString(2, hash.sha512(password + salt, 50));
+
+        
+        
+        resultSet = select(loginUser);
         //System.out.println(SQLstatement);
         try
         {
@@ -161,13 +173,17 @@ public class JDBFunctions {
         return (Integer)session.getAttribute("userID");
     }
     
-    public void getUserInfo(Integer pUserID)
+    public void getUserInfo(Integer pUserID) throws Exception
     {
-        String sql;
-        sql = "SELECT * FROM tbl_users WHERE userID = " + pUserID.toString(); 
+        String userInfoQueryString = "SELECT * FROM tbl_users WHERE userID = ?"; 
+        
+        PreparedStatement gettingUserInfo = this.getNewPreparedStatement(userInfoQueryString);
+        gettingUserInfo.setInt(1, pUserID);
+        
+        
         try
         {
-            resultSet = select(sql);
+            resultSet = select(gettingUserInfo);
             if(resultSet.next())
             {
                 userID = resultSet.getInt("userID");

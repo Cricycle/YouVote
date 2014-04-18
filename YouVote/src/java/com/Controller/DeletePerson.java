@@ -50,7 +50,7 @@ public class DeletePerson extends HttpServlet {
             userIDs = Integer.parseInt(ID);
             
             
-            String deleteUserString = "DELETE from users where userID = ?" ;
+            String deleteUserString = "SELECT fn_delete_user(?)" ;
            //todo uncomment this once the delete user function is in the database
            //String deleteUserString = "SELECT deleteUser(?)";  
                     
@@ -60,7 +60,7 @@ public class DeletePerson extends HttpServlet {
 
                 try
                 {
-                   user.execute(deleteUser);
+                   user.select(deleteUser);
                    JDBFunctions afterUserDelete = new JDBFunctions();
                     afterUserDelete.session = request.getSession(true);
                     afterUserDelete.saveLoginID(0);
