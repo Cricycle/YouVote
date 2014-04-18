@@ -64,21 +64,6 @@
                                                         <div>							
                                                                 <h3>Title <span>/user/</h3>
                                                                 <p>Long description</p>
-                                                                <i class="pos_fixed">
-                                                                    <form action="Vote" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">&nbsp; Vote &nbsp;</button>
-                                                                    </form>
-                                                                    <br><br><br>
-                                                                    <form action="SubmitComment" method="post">
-                                                                        <textarea name="commentboxtextarea" id="commentbox" input class="commentbox" type="text" name="comment" style="display: inline"></textarea>
-                                                                        <br>
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Add Comment</button>
-                                                                    </form>
-                                                                    <br><br>
-                                                                    <form action="Report" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Report</button>
-                                                                    </form>
-                                                                </i>
                                                         </div>
                                                         <a href="#page" class="lb-close">Close</a>
                                                 </div>
@@ -93,21 +78,6 @@
                                                         <div>							
                                                                 <h3>Title <span>/user/</h3>
                                                                 <p>Long description</p>
-                                                                <i class="pos_fixed">
-                                                                    <form action="Vote" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">&nbsp; Vote &nbsp;</button>
-                                                                    </form>
-                                                                    <br><br><br>
-                                                                    <form action="SubmitComment" method="post">
-                                                                        <textarea name="commentboxtextarea" id="commentbox" input class="commentbox" type="text" name="comment" style="display: inline"></textarea>
-                                                                        <br>
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Add Comment</button>
-                                                                    </form>
-                                                                    <br><br>
-                                                                    <form action="Report" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Report</button>
-                                                                    </form>
-                                                                </i>
                                                         </div>
                                                         <a href="#page" class="lb-close">Close</a>
                                                 </div>
@@ -122,21 +92,6 @@
                                                         <div>							
                                                                 <h3>Title <span>/user/</h3>
                                                                 <p>Long description</p>
-                                                                <i class="pos_fixed">
-                                                                    <form action="Vote" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">&nbsp; Vote &nbsp;</button>
-                                                                    </form>
-                                                                    <br><br><br>
-                                                                    <form action="SubmitComment" method="post">
-                                                                        <textarea name="commentboxtextarea" id="commentbox" input class="commentbox" type="text" name="comment" style="display: inline"></textarea>
-                                                                        <br>
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Add Comment</button>
-                                                                    </form>
-                                                                    <br><br>
-                                                                    <form action="Report" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Report</button>
-                                                                    </form>
-                                                                </i>
                                                         </div>
                                                         <a href="#page" class="lb-close">Close</a>
                                                 </div>
@@ -151,21 +106,6 @@
                                                         <div>							
                                                                 <h3>Title <span>/user/</h3>
                                                                 <p>Long description</p>
-                                                                <i class="pos_fixed">
-                                                                    <form action="Vote" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">&nbsp; Vote &nbsp;</button>
-                                                                    </form>
-                                                                    <br><br><br>
-                                                                    <form action="SubmitComment" method="post">
-                                                                        <textarea name="commentboxtextarea" id="commentbox" input class="commentbox" type="text" name="comment" style="display: inline"></textarea>
-                                                                        <br>
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Add Comment</button>
-                                                                    </form>
-                                                                    <br><br>
-                                                                    <form action="Report" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Report</button>
-                                                                    </form>
-                                                                </i>
                                                         </div>
                                                         <a href="#page" class="lb-close">Close</a>
                                                 </div>
@@ -180,21 +120,6 @@
                                                         <div>							
                                                                 <h3>Title <span>/user/</h3>
                                                                 <p>Long description</p>
-                                                                <i class="pos_fixed">
-                                                                    <form action="Vote" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">&nbsp; Vote &nbsp;</button>
-                                                                    </form>
-                                                                    <br><br><br>
-                                                                    <form action="SubmitComment" method="post">
-                                                                        <textarea name="commentboxtextarea" id="commentbox" input class="commentbox" type="text" name="comment" style="display: inline"></textarea>
-                                                                        <br>
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Add Comment</button>
-                                                                    </form>
-                                                                    <br><br>
-                                                                    <form action="Report" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Report</button>
-                                                                    </form>
-                                                                </i>
                                                         </div>
                                                         <a href="#page" class="lb-close">Close</a>
                                                 </div>
@@ -209,21 +134,6 @@
                                                         <div>							
                                                                 <h3>Title <span>/user/</h3>
                                                                 <p>Long description</p>
-                                                                <i class="pos_fixed">
-                                                                    <form action="Vote" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">&nbsp; Vote &nbsp;</button>
-                                                                    </form>
-                                                                    <br><br><br>
-                                                                    <form action="SubmitComment" method="post">
-                                                                        <textarea name="commentboxtextarea" id="commentbox" input class="commentbox" type="text" name="comment" style="display: inline"></textarea>
-                                                                        <br>
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Add Comment</button>
-                                                                    </form>
-                                                                    <br><br>
-                                                                    <form action="Report" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Report</button>
-                                                                    </form>
-                                                                </i>
                                                         </div>
                                                         <a href="#page" class="lb-close">Close</a>
                                                 </div>
@@ -238,21 +148,6 @@
                                                         <div>							
                                                                 <h3>Title <span>/user/</h3>
                                                                 <p>Long description</p>
-                                                                <i class="pos_fixed">
-                                                                    <form action="Vote" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">&nbsp; Vote &nbsp;</button>
-                                                                    </form>
-                                                                    <br><br><br>
-                                                                    <form action="SubmitComment" method="post">
-                                                                        <textarea name="commentboxtextarea" id="commentbox" input class="commentbox" type="text" name="comment" style="display: inline"></textarea>
-                                                                        <br>
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Add Comment</button>
-                                                                    </form>
-                                                                    <br><br>
-                                                                    <form action="Report" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Report</button>
-                                                                    </form>
-                                                                </i>
                                                         </div>
                                                         <a href="#page" class="lb-close">Close</a>
                                                 </div>
