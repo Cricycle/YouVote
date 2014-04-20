@@ -42,6 +42,7 @@
                                             user.getUserInfo(userID);
                                             htmlUserInfo = "<a href=\"accountinfo.jsp\">Welcome " + user.firstname + "</a>";
                                             out.println(htmlUserInfo);
+                                            out.println("<input type=\"hidden\" name=\"userid\" value=\"" + user.getLoginID() + "\">");
                                             
                                             html = "<form style=\"display: inline\" action=\"Logout\" method=\"post\">"
                                                     + "<a href=\"Logout\">Logout</a>"

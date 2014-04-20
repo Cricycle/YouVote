@@ -15,16 +15,14 @@
 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     </head>
+    
     <body>
-        
-<html lang="en" >
-    <head>
-        <meta charset="utf-8" />
-        <title>Pure HTML5 file upload | Script Tutorials</title>
-        <link href="css/main.css" rel="stylesheet" type="text/css" />
-        <script src="js/script.js"></script>
-    </head>
-    <body>
+        <%
+            // connected to header.jsp
+            if (userID == null || userID == 0) {
+                out.println("<meta http-equiv=\"Refresh\" content=\"0; url=account.jsp\" />");
+            }
+        %>
         <!--> upload code from http://www.script-tutorials.com/pure-html5-file-upload/ <!-->
         <div class="container">	
             <div class="header">
@@ -38,6 +36,11 @@
                     <div>
                         <div><label for="image_file">Please select image file</label></div>
                         <div><input type="file" name="image_file" id="image_file" onchange="fileSelected();" /></div>
+                        <div><label for="description">Image description</label></div>
+                        <div><textarea name="description" id="description" rows="2" cols="50"></textarea></div>
+                        <%
+                            out.println("<input type=\"hidden\" name=\"userid\" value=\"" + user.getLoginID() + "\">");
+                        %>
                     </div>
                     <div>
                         <input type="button" value="Upload" onclick="startUploading()" />

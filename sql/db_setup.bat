@@ -1,7 +1,7 @@
 @echo off
-SET PGPASSWORD=putpasswordhere
-SET USER=putuserhere
-SET DB=putdbhere
+SET PGPASSWORD=chelocean
+SET USER=postgres
+SET DB=YouVote
 
 REM table creation files
 psql -d %DB% -U %USER% -f tbl_users.sql

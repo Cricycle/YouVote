@@ -6,19 +6,27 @@
 
 package com.Controller;
 
+import com.Model.JDBFunctions;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.*;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Alex
  */
+@MultipartConfig
 public class Upload extends HttpServlet {
 
     /**
@@ -34,34 +42,49 @@ public class Upload extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Upload</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Upload at " + request.getContextPath() + "</h1>");
-            Enumeration<String> e = request.getHeaderNames();
-            out.println("<p>----</p>");
-            while (e.hasMoreElements()) {
-                String ele = e.nextElement();
-                out.println("<p>" + ele + "</p>");
-                out.println("<p>\t" + request.getHeader(ele) + "\t</p>");
-            }
-            out.println("<p>" + request.getAttribute("org.glassfish.web.RequestFacadeHelper") + "</p>");
-            out.println("<p>----</p>");
-            out.println("</body>");
-            out.println("</html>");
-            //out.println(request.)
-            InputStream is = request.getInputStream();
-            //request.
-            OutputStream outout = new FileOutputStream("C:\\Users\\Alex\\Documents\\GitHub\\YouVote\\YouVote\\web\\images\\yoyoyoyoyoyoyoyoyoyo");
+            
+            String description = request.getParameter("description"); // Retrieves <input type="text" name="description">
+            Part filePart = request.getPart("image_file"); // Retrieves <input type="file" name="file">
+            int userid = Integer.parseInt(request.getParameter("userid"));
+            String filename = (new java.util.Date()).getTime() + "_" + filePart.getSubmittedFileName();
+            
+            InputStream filecontent = filePart.getInputStream();
+            OutputStream outout = new FileOutputStream("C:\\Users\\Alex\\Documents\\GitHub\\YouVote\\YouVote\\web\\images\\uploads\\" + filename + ".jpg");
             byte[] data = new byte[1<<16];
             int len = -1;
-            while ((len = is.read(data)) > 0) {
+            int total = 0;
+            while ((len = filecontent.read(data)) > 0) {
                 outout.write(data, 0, len);
+                total += len;
             }
             outout.close();
+            out.println("<p>Success</p>");
+            out.println("<p>" + request.getParameter("filedim") + "</p>");
+            Collection<Part> pp = request.getParts();
+            for(Part p: pp) {
+                out.println("<p>" + p.getName() + "</p>");
+                Collection<String> hn = p.getHeaderNames();
+                for (String s: hn) {
+                    out.println("<p>---" + s + "</p>");
+                    out.println("<p>------" + p.getHeader(s) + "</p>");
+                }
+            }
+            
+            JDBFunctions dbconn = new JDBFunctions();
+            String insertsql = "INSERT INTO tbl_photos(imagePath, userID, categoryID, description, imageSize, uploadDate) VALUES (?, ?, ?, ?, ?, ?);";
+            PreparedStatement st;
+            try {
+                st = dbconn.getNewPreparedStatement(insertsql);
+                st.setString(1, "images/uploads/" + filename);
+                st.setInt(2, userid);
+                st.setInt(3, 1);
+                st.setString(4, description.substring(0, Math.min(description.length(), 500)));
+                st.setInt(5, total);
+                st.setTimestamp(6, new java.sql.Timestamp((new java.util.Date()).getTime()));
+                dbconn.execute(st);
+            } catch (SQLException ex) {
+                Logger.getLogger(Upload.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -103,5 +126,4 @@ public class Upload extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
