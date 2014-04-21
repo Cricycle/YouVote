@@ -12,12 +12,12 @@ ALTER SEQUENCE tbl_photos_photoid_seq RESTART WITH 1;
 ALTER SEQUENCE tbl_comments_commentid_seq RESTART WITH 1;
 
 INSERT INTO tbl_users(username, email, firstname, lastname, salt, passwordhash) VALUES
-	('alex', 'alex-email', 'a', 'lex', 'blah', 'blah'),
-	('chelsea', 'chelsea-email', 'c', 'sea', 'blah', 'blah'),
-	('meghan', 'meghan-email', 'm', 'han', 'blah', 'blah'),
-	('kyle', 'kyle-email', 'ky', 'lie', 'blah', 'blah'),
-	('jj', 'jj-email', 'a', 'j', 'jj', 'blah'),
-	('afroman', 'afro-email', 'a', 'fro', 'blah', 'blah');
+	('alex', 'alex-email', 'a', 'lex', 'JCpticRBy', '4c711b8a297039e42447cb219ad81a8d95cd6aba0f763a0395'),
+	('chelsea', 'chelsea-email', 'c', 'sea', 'JCpticRBy', '4c711b8a297039e42447cb219ad81a8d95cd6aba0f763a0395'),
+	('meghan', 'meghan-email', 'm', 'han', 'JCpticRBy', '4c711b8a297039e42447cb219ad81a8d95cd6aba0f763a0395'),
+	('kyle', 'kyle-email', 'ky', 'lie', 'JCpticRBy', '4c711b8a297039e42447cb219ad81a8d95cd6aba0f763a0395'),
+	('jj', 'jj-email', 'a', 'j', 'JCpticRBy', '4c711b8a297039e42447cb219ad81a8d95cd6aba0f763a0395'),
+	('afroman', 'afro-email', 'a', 'fro', 'JCpticRBy', '4c711b8a297039e42447cb219ad81a8d95cd6aba0f763a0395');
 
 INSERT INTO tbl_photo_categories(shortName, fullDescription) VALUES
 	('cat1', 'this is all about origin cat'),
@@ -25,17 +25,27 @@ INSERT INTO tbl_photo_categories(shortName, fullDescription) VALUES
 	('ca9', 'cats that pretend to be dogs');
 
 INSERT INTO tbl_photos(imagePath, userID, categoryID, description, imageSize, uploadDate) VALUES
-	('image10_path_a', 1, 1, 'a', 1, '3-20-2014'),
-	('image11_path_a', 1, 1, 'b', 2, '3-21-2014'),
-	('image12_path_a', 1, 2, 'c', 4, '3-22-2014'),
-	('image13_path_a', 1, 3, 'd', 8, '3-23-2014'),
-	('image14_path_c', 2, 1, 'e', 16, '3-24-2014'),
-	('image15_path_c', 2, 3, 'f', 32, '3-25-2014'),
-	('image16_path_c', 2, 3, 'g', 64, '3-26-2014'),
-	('image17_path_m', 3, 1, 'h', 128, '3-27-2014'),
-	('image18_path_m', 3, 2, 'u', 256, '3-28-2014'),
-	('image19_path_k', 4, 2, 'j', 512, '3-29-2014'),
-	('image20_path_af', 6, 1, 'k', 1024, '3-30-2014');
+	('images/1.jpg', 1, 1, 'a', 1, '3-20-2014'),
+	('images/2.jpg', 1, 1, 'b', 2, '3-21-2014'),
+	('images/3.jpg', 1, 2, 'c', 4, '3-22-2014'),
+	('images/4.jpg', 1, 3, 'd', 8, '3-23-2014'),
+	('images/5.jpg', 2, 1, 'e', 16, '3-24-2014'),
+	('images/6.jpg', 2, 3, 'f', 32, '3-25-2014'),
+	('images/7.jpg', 2, 3, 'g', 64, '3-26-2014'),
+	('images/8.jpg', 3, 1, 'h', 128, '3-27-2014'),
+	('images/9.jpg', 3, 2, 'i', 256, '3-28-2014'),
+	('images/10.jpg', 4, 2, 'j', 512, '3-29-2014'),
+	('images/11.jpg', 6, 1, 'k', 1024, '3-30-2014'),
+	('images/12.jpg', 6, 3, 'l', 8, '3-23-2014'),
+	('images/13.jpg', 2, 1, 'm', 16, '3-24-2014'),
+	('images/14.jpg', 2, 3, 'n', 32, '3-25-2014'),
+	('images/15.jpg', 2, 3, 'o', 64, '3-26-2014'),
+	('images/16.jpg', 3, 1, 'p', 128, '3-27-2014'),
+	('images/17.jpg', 3, 2, 'q', 256, '3-28-2014'),
+	('images/18.jpg', 4, 2, 'r', 512, '3-29-2014'),
+	('images/19.jpg', 6, 1, 's', 1024, '3-30-2014'),
+	('images/20.jpg', 6, 1, 't', 1024, '3-30-2014');
+  
 
 INSERT INTO tbl_favorite_photos(userIDOwner, photoIDfavorite, favoritedDate) VALUES
 	(1, 1, '3-20-2014'),
@@ -53,7 +63,17 @@ INSERT INTO tbl_favorite_photos(userIDOwner, photoIDfavorite, favoritedDate) VAL
 	(2, 2, '3-27-2014'),
 	(2, 9, '3-27-2014'),
 	(2, 10, '3-20-2014'),
-	(5, 7, '3-29-2014');
+	(5, 7, '3-29-2014'),
+	(5, 6, '3-29-2014'),
+	(5, 12, '3-29-2014'),
+	(5, 15, '3-29-2014'),
+	(5, 18, '3-29-2014'),
+	(5, 20, '3-29-2014'),
+	(6, 14, '3-29-2014'),
+	(6, 15, '3-30-2014'),
+	(6, 16, '3-29-2014'),
+	(6, 17, '3-29-2014');
+  
 	
 
 INSERT INTO tbl_votes(userID, photoID, voteTime) VALUES
