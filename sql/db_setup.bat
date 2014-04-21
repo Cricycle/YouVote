@@ -30,3 +30,6 @@ psql -d %DB% -U %USER% -f fn_rank_users_by_votes.sql
 REM view creation files
 psql -d %DB% -U %USER% -f vw_recent_uploads.sql
 psql -d %DB% -U %USER% -f vw_winner_photos.sql
+
+REM fake data
+psql -d %DB% -U %USER% -f sample_data.sql

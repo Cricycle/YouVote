@@ -1,4 +1,4 @@
-﻿DELETE FROM tbl_votes;
+DELETE FROM tbl_votes;
 DELETE FROM tbl_comments;
 DELETE FROM tbl_winners;
 DELETE FROM tbl_favorite_photos;
@@ -22,7 +22,8 @@ INSERT INTO tbl_users(username, email, firstname, lastname, salt, passwordhash) 
 INSERT INTO tbl_photo_categories(shortName, fullDescription) VALUES
 	('cat1', 'this is all about origin cat'),
 	('cat9', 'this is about category 9 hurricanes'),
-	('ca9', 'cats that pretend to be dogs');
+	('ca9', 'cats that pretend to be dogs'),
+  ('beauty', 'random black and white beauties');
 
 INSERT INTO tbl_photos(imagePath, userID, categoryID, description, imageSize, uploadDate) VALUES
 	('images/1.jpg', 1, 1, 'a', 1, '3-20-2014'),
@@ -44,7 +45,19 @@ INSERT INTO tbl_photos(imagePath, userID, categoryID, description, imageSize, up
 	('images/17.jpg', 3, 2, 'q', 256, '3-28-2014'),
 	('images/18.jpg', 4, 2, 'r', 512, '3-29-2014'),
 	('images/19.jpg', 6, 1, 's', 1024, '3-30-2014'),
-	('images/20.jpg', 6, 1, 't', 1024, '3-30-2014');
+	('images/20.jpg', 6, 1, 't', 1024, '3-30-2014'),
+  ('images/full/1.jpg', 4, 4, 'aa', 1025, '4-04-2014'),
+  ('images/full/2.jpg', 4, 4, 'ab', 1025, '4-04-2014'),
+  ('images/full/3.jpg', 4, 4, 'ac', 1025, '4-05-2014'),
+  ('images/full/4.jpg', 4, 4, 'ad', 1025, '4-06-2014'),
+  ('images/full/5.jpg', 4, 4, 'ae', 1025, '4-07-2014'),
+  ('images/full/6.jpg', 4, 4, 'af', 1025, '4-08-2014'),
+  ('images/full/7.jpg', 4, 4, 'ag', 1025, '4-09-2014'),
+  ('images/full/8.jpg', 4, 4, 'ah', 1025, '4-03-2014'),
+  ('images/full/9.jpg', 4, 4, 'ai', 1025, '4-07-2014'),
+  ('images/full/10.jpg', 4, 4, 'aj', 1025, '4-04-2014'),
+  ('images/full/11.jpg', 4, 4, 'ak', 1025, '4-04-2014');
+  
   
 
 INSERT INTO tbl_favorite_photos(userIDOwner, photoIDfavorite, favoritedDate) VALUES
