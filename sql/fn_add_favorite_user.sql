@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Wrapper which favorites a user for a given user.
  *
  * @Author: Meghan
@@ -12,6 +12,9 @@ BEGIN
 	RETURN TRUE;
 EXCEPTION
 	WHEN OTHERS THEN
+        DELETE FROM tbl_favorite_users
+        WHERE tbl_favorite_users.userIDOwner = $1
+        AND tbl_favorite_users.userIDFavorite = $2;
 		RETURN FALSE;
 	
 END;
