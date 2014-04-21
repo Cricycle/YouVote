@@ -6,8 +6,13 @@
 
 package com.Controller;
 
+import com.Model.JDBFunctions;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,16 +37,18 @@ public class Vote extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Vote</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Vote at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            JDBFunctions dbconn = new JDBFunctions();
+            int userid = Integer.parseInt(request.getParameter("userid"));
+            int photoid = Integer.parseInt(request.getParameter("photoid"));
+            String sql = "SELECT fn_add_vote(?, ?);";
+            PreparedStatement st = dbconn.getNewPreparedStatement(sql);
+            st.setInt(1, userid);
+            st.setInt(2, photoid);
+            dbconn.select(st);
+            //request.getRequestDispatcher("index.jsp").forward(request, response);
+            response.sendRedirect(request.getHeader("Referer"));
+        } catch (SQLException ex) {
+            Logger.getLogger(Vote.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

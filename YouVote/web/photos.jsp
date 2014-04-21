@@ -1,3 +1,5 @@
+<%@page import="java.util.HashSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <!DOCTYPE html>
 <html lang="en">
     <%@include file="header.jsp"%>
@@ -25,133 +27,79 @@
                                             
                                 <section>
                                 <ul class="lb-album">
-                                        <li>
-                                                <a href="#image-1">
-                                                        <img src="images/thumbs/1.jpg" alt="image01">
-                                                        <span>Title</span>
-                                                </a>
-                                                <div class="lb-overlay" id="image-1">
-                                                        <img src="images/full/1.jpg" alt="image01" />
-                                                        <div>
-                                                                <h3>Title <span>/user/</h3>
-                                                                <p>Long description</p>
-                                                                <i class="pos_fixed">
-                                                                    <form action="Vote" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">&nbsp; Vote &nbsp;</button>
-                                                                    </form>
-                                                                    <br><br><br>
-                                                                    <form action="SubmitComment" method="post">
-                                                                        <textarea name="commentboxtextarea" id="commentbox" input class="commentbox" type="text" name="comment" style="display: inline"></textarea>
-                                                                        <br>
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Add Comment</button>
-                                                                    </form>
-                                                                    <br><br>
-                                                                    <form action="Report" method="post">
-                                                                        <button class="btn btn-4 btn-4c icon-arrow-right">Report</button>
-                                                                    </form>
-                                                                </i>
-                                                        </div>
-                                                        <a href="#page" class="lb-close">Close</a>
-                                                </div>
-                                        </li>
-                                        <li>
-                                                <a href="#image-2">
-                                                        <img src="images/thumbs/2.jpg" alt="image02">
-                                                        <span>Title</span>
-                                                </a>
-                                                <div class="lb-overlay" id="image-2">
-                                                        <img src="images/full/2.jpg" alt="image02" />
-                                                        <div>							
-                                                                <h3>Title <span>/user/</h3>
-                                                                <p>Long description</p>
-                                                        </div>
-                                                        <a href="#page" class="lb-close">Close</a>
-                                                </div>
-                                        </li>
-                                        <li>
-                                                <a href="#image-3">
-                                                        <img src="images/thumbs/3.jpg" alt="image03">
-                                                        <span>Title</span>
-                                                </a>
-                                                <div class="lb-overlay" id="image-3">
-                                                        <img src="images/full/3.jpg" alt="image03" />
-                                                        <div>							
-                                                                <h3>Title <span>/user/</h3>
-                                                                <p>Long description</p>
-                                                        </div>
-                                                        <a href="#page" class="lb-close">Close</a>
-                                                </div>
-                                        </li>
-                                        <li>
-                                                <a href="#image-4">
-                                                        <img src="images/thumbs/4.jpg" alt="image04">
-                                                        <span>Title</span>
-                                                </a>
-                                                <div class="lb-overlay" id="image-4">
-                                                        <img src="images/full/4.jpg" alt="image04" />
-                                                        <div>							
-                                                                <h3>Title <span>/user/</h3>
-                                                                <p>Long description</p>
-                                                        </div>
-                                                        <a href="#page" class="lb-close">Close</a>
-                                                </div>
-                                        </li>
-                                        <li>
-                                                <a href="#image-5">
-                                                        <img src="images/thumbs/5.jpg" alt="image05">
-                                                        <span>Title</span>
-                                                </a>
-                                                <div class="lb-overlay" id="image-5">
-                                                        <img src="images/full/5.jpg" alt="image05" />
-                                                        <div>							
-                                                                <h3>Title <span>/user/</h3>
-                                                                <p>Long description</p>
-                                                        </div>
-                                                        <a href="#page" class="lb-close">Close</a>
-                                                </div>
-                                        </li>
-                                        <li>
-                                                <a href="#image-6">
-                                                        <img src="images/thumbs/6.jpg" alt="image06">
-                                                        <span>Title</span>
-                                                </a>
-                                                <div class="lb-overlay" id="image-6">
-                                                        <img src="images/full/6.jpg" alt="image06" />
-                                                        <div>							
-                                                                <h3>Title <span>/user/</h3>
-                                                                <p>Long description</p>
-                                                        </div>
-                                                        <a href="#page" class="lb-close">Close</a>
-                                                </div>
-                                        </li>
-                                        <li>
-                                                <a href="#image-7">
-                                                        <img src="images/thumbs/7.jpg" alt="image07">
-                                                        <span>Title</span>
-                                                </a>
-                                                <div class="lb-overlay" id="image-7">
-                                                        <img src="images/full/7.jpg" alt="image07" />
-                                                        <div>							
-                                                                <h3>Title <span>/user/</h3>
-                                                                <p>Long description</p>
-                                                        </div>
-                                                        <a href="#page" class="lb-close">Close</a>
-                                                </div>
-                                        </li>
-                                        <li>
-                                                <a href="#image-8">
-                                                        <img src="images/thumbs/8.jpg" alt="image08">
-                                                        <span>Title</span>
-                                                </a>
-                                                <div class="lb-overlay" id="image-8">
-                                                        <img src="images/full/8.jpg" alt="image08" />
-                                                        <div>							
-                                                                <h3>Title <span>/user/</h3>
-                                                                <p>Long description</p>
-                                                        </div>
-                                                        <a href="#page" class="lb-close">Close</a>
-                                                </div>
-                                        </li>
+                                    <%
+                                        String getVotes = "SELECT photoID FROM tbl_votes WHERE userID = ?;";
+                                        PreparedStatement st = user.getNewPreparedStatement(getVotes);
+                                        st.setInt(1, userID);
+                                        ResultSet rs = user.select(st);
+                                        HashSet<Integer> voteids = new HashSet<Integer>();
+                                        while (rs.next()) {
+                                            voteids.add(rs.getInt("photoID"));
+                                        }
+                                        String selectsql = "SELECT * FROM tbl_photos WHERE categoryID = 4;";
+                                        st = user.getNewPreparedStatement(selectsql);
+                                        rs = user.select(st);
+                                        while (rs.next()) {
+                                            int photoID = rs.getInt("photoID");
+                                            String imagePath = rs.getString("imagePath");
+                                            String description = rs.getString("description");
+                                            String[] parts = imagePath.split("/");
+                                            String imageName = parts[parts.length-1].substring(0, parts[parts.length-1].lastIndexOf('.'));
+                                            /*
+                                            	photoID 		SERIAL,
+	imagePath 		VARCHAR(250) NOT NULL,	-- filepath of image on the server
+	userID 			INT,					-- user who uploaded the photo
+	categoryID 		INT,					-- what category the photo belongs to
+	description 	VARCHAR(500),			-- optional description by user about photo
+	imageSize 		INT NOT NULL,			-- how many bytes the photo takes up on disk
+	uploadDate 		TIMESTAMP NOT NULL,		-- when the photo was uploaded
+                                                    */
+                                            //out.printf("photoID=%d, imagePath=%s, description=%s, imageName=%s\n", photoID, imagePath, description, imageName);
+                                            out.println("<li>");
+                                            out.println("\t<a href=\"#image-" + photoID + "\">");
+                                            out.println("\t\t<img src=\"" + imagePath + "\" alt=\"image" + photoID + "\" height=150px width=150px>");
+                                            out.println("\t\t<span>" + imageName + "</span>");
+                                            out.println("\t</a>");
+                                            out.println("\t<div class=\"lb-overlay\" id=\"image-" + photoID + "\">");
+                                            out.println("\t\t<img src=\"" + imagePath + "\" alt=\"image" + photoID + "\"/>");
+                                            out.println("\t\t<div style=\"float:right; position:relative\">");
+                                            out.println("\t\t\t<form action=\"Vote\" method=\"post\">");
+                                            // inputs for Voting
+                                            out.println("\t\t\t<input type=\"hidden\" name=\"userid\" value=" + userID + ">");
+                                            out.println("\t\t\t<input type=\"hidden\" name=\"photoid\" value=" + photoID + ">");
+                                            if (voteids.contains(photoID)) {
+                                                out.println("\t\t\t<img src=\"images/green_check.png\" width=50px height=50px>");
+                                            }
+                                            out.println("\t\t\t\t<button class=\"btn btn-4 btn-4c icon-arrow-right\">&nbsp; Vote &nbsp;</button>");
+                                            out.println("\t\t\t</form>");
+                                            out.println("\t\t\t<br><br><br>");
+                                            out.println("\t\t\t<form action=\"SubmitComment\" method=\"post\">");
+                                            // inputs for commenting
+                                            out.println("\t\t\t<input type=\"hidden\" name=\"userid\" value=" + userID + ">");
+                                            out.println("\t\t\t<input type=\"hidden\" name=\"photoid\" value=" + photoID + ">");
+                                            out.println("\t\t\t\t<textarea name=\"commentboxtextarea\" id=\"commentbox" + photoID + "\" input class=\"commentbox\" type=\"text\" name=\"comment\" style=\"display: inline\"></textarea>");
+                                            out.println("\t\t\t\t<br>");
+                                            out.println("\t\t\t\t<button class=\"btn btn-4 btn-4c icon-arrow-right\">Add Comment</button>");
+                                            out.println("\t\t\t</form>");
+                                            out.println("\t\t\t<br><br>");
+                                            out.println("\t\t\t<form action=\"Report\" method=\"post\">");
+                                            // inputs for Reporting
+                                            out.println("\t\t\t<input type=\"hidden\" name=\"userid\" value=" + userID + ">");
+                                            out.println("\t\t\t<input type=\"hidden\" name=\"photoid\" value=" + photoID + ">");
+                                            out.println("\t\t\t\t<button class=\"btn btn-4 btn-4c icon-arrow-right\">Report</button>");
+                                            out.println("\t\t\t</form>");
+                                            out.println("\t\t</div>");
+                                            out.println("\t<div>");
+                                            out.println("\t\t<h3>" + imageName + "<span>/user/</h3>");
+                                            out.println("\t\t<p>" + description + "</p>");
+                                            out.println("\t</div>");
+                                            out.println("\t<a href=\"#page\" class=\"lb-close\">Close</a>");
+                                            out.println("\t</div>");
+                                            out.println("</li>");
+                                            out.println();
+                                        }
+                                        
+                                    %>
                                 </ul>
                         </section>
                                             
