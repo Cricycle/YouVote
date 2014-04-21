@@ -59,7 +59,7 @@ public class Upload extends HttpServlet {
             }
             outout.close();
             out.println("<p>Success</p>");
-            out.println("<p>" + request.getParameter("filedim") + "</p>");
+            /*out.println("<p>" + request.getParameter("filedim") + "</p>");
             Collection<Part> pp = request.getParts();
             for(Part p: pp) {
                 out.println("<p>" + p.getName() + "</p>");
@@ -68,7 +68,7 @@ public class Upload extends HttpServlet {
                     out.println("<p>---" + s + "</p>");
                     out.println("<p>------" + p.getHeader(s) + "</p>");
                 }
-            }
+            }*/
             
             JDBFunctions dbconn = new JDBFunctions();
             String insertsql = "INSERT INTO tbl_photos(imagePath, userID, categoryID, description, imageSize, uploadDate) VALUES (?, ?, ?, ?, ?, ?);";
