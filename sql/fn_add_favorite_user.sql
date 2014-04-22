@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Wrapper which favorites a user for a given user.
  *
  * @Author: Meghan

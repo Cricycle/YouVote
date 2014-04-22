@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Wrapper which allows a user to vote.  Will not add the vote if the user
  * has already voted on that photo.
  *

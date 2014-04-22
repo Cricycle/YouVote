@@ -49,7 +49,7 @@ public class Upload extends HttpServlet {
             String filename = (new java.util.Date()).getTime() + "_" + filePart.getSubmittedFileName();
             
             InputStream filecontent = filePart.getInputStream();
-            OutputStream outout = new FileOutputStream("C:\\Users\\Alex\\Documents\\GitHub\\YouVote\\YouVote\\web\\images\\uploads\\" + filename + ".jpg");
+            OutputStream outout = new FileOutputStream("C:\\Users\\Alex\\Documents\\GitHub\\YouVote\\YouVote\\web\\images\\uploads\\" + filename);
             byte[] data = new byte[1<<16];
             int len = -1;
             int total = 0;

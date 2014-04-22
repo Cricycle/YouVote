@@ -38,8 +38,14 @@ public class Vote extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             JDBFunctions dbconn = new JDBFunctions();
-            int userid = Integer.parseInt(request.getParameter("userid"));
-            int photoid = Integer.parseInt(request.getParameter("photoid"));
+            int userid = 0, photoid = 0;
+            try {
+                userid = Integer.parseInt(request.getParameter("userid"));
+                photoid = Integer.parseInt(request.getParameter("photoid"));
+            } catch (NumberFormatException e) {
+                response.sendRedirect("account.jsp");
+                return;
+            }
             String sql = "SELECT fn_add_vote(?, ?);";
             PreparedStatement st = dbconn.getNewPreparedStatement(sql);
             st.setInt(1, userid);

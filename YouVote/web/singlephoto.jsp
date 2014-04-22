@@ -1,3 +1,9 @@
+<%-- 
+    Document   : singlephoto
+    Created on : Apr 21, 2014, 8:58:03 AM
+    Author     : Alex
+--%>
+
 <%@page import="java.util.HashSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <!DOCTYPE html>
@@ -28,28 +34,42 @@
                                 <section>
                                 <ul class="lb-album">
                                     <%
+                                        String strphotoID = request.getParameter("photoID");
+                                        int photoID = 0;
+                                        try {
+                                            photoID = Integer.parseInt(request.getParameter("photoID"));
+                                        } catch (NumberFormatException e) {
+                                            response.sendRedirect("index.jsp");
+                                        }
+                                        
                                         HashSet<Integer> voteids = new HashSet<Integer>();
                                         PreparedStatement st = null;
                                         ResultSet rs = null;
                                         if (userID != null) {
-                                            String getVotes = "SELECT photoID FROM tbl_votes WHERE userID = ?;";
+                                            String getVotes = "SELECT photoID FROM tbl_votes WHERE userID = ? AND photoID = ?;";
                                             st = user.getNewPreparedStatement(getVotes);
                                             st.setInt(1, userID);
+                                            st.setInt(2, photoID);
                                             rs = user.select(st);
                                             while (rs.next()) {
                                                 voteids.add(rs.getInt("photoID"));
                                             }
                                         }
-                                        String selectsql = "SELECT * FROM tbl_photos WHERE categoryID = 4;";
+                                        String selectsql = "SELECT * FROM tbl_photos WHERE photoID = ?;";
                                         st = user.getNewPreparedStatement(selectsql);
+                                        st.setInt(1, photoID);
                                         rs = user.select(st);
                                         while (rs.next()) {
-                                            int photoID = rs.getInt("photoID");
                                             String imagePath = rs.getString("imagePath");
                                             String description = rs.getString("description");
                                             String[] parts = imagePath.split("/");
                                             String imageName = parts[parts.length-1].substring(0, parts[parts.length-1].lastIndexOf('.'));
                                             String photoUserID = rs.getString("userID");
+                                            
+                                            String commentsql = "SELECT * FROM tbl_comments WHERE photoID = ?;";
+                                            PreparedStatement st2 = user.getNewPreparedStatement(commentsql);
+                                            st2.setInt(1, photoID);
+                                            ResultSet rs2 = user.select(st2);
                                             
                                             out.println("<li>");
                                             out.println("\t<a href=\"#image-" + photoID + "\">");
@@ -90,6 +110,18 @@
                                             out.println("\t\t<p>" + description + "</p>");
                                             out.println("\t</div>");
                                             out.println("\t<a href=\"#page\" class=\"lb-close\">Close</a>");
+                                            out.println("\t</div>");
+                                            // existing comments
+                                            out.println("\t<div name=\"commentsection\">");
+                                            while (rs2.next()) {
+                                                String text = rs2.getString("comment");
+                                                int commentUser = rs2.getInt("userID");
+                                                int commentID = rs2.getInt("commentID");
+                                                out.println("\t\t<div name=\"comment" + commentID + "\">");
+                                                out.println("\t\t\t<a href=\"profile.jsp?userID=" + commentUser + "\">" + commentUser + "</a>");
+                                                out.println("\t\t\t<textarea readonly>" + text + "</textarea>");
+                                                out.println("\t\t</div>");
+                                            }
                                             out.println("\t</div>");
                                             out.println("</li>");
                                             out.println();

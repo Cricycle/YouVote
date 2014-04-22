@@ -38,8 +38,13 @@ public class SubmitComment extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             JDBFunctions dbconn = new JDBFunctions();
-            int userid = Integer.parseInt(request.getParameter("userid"));
-            int photoid = Integer.parseInt(request.getParameter("photoid"));
+            int userid = 0, photoid = 0;
+            try {
+                userid = Integer.parseInt(request.getParameter("userid"));
+                photoid = Integer.parseInt(request.getParameter("photoid"));
+            } catch (NumberFormatException e) {
+                response.sendRedirect("account.jsp");
+            }
             String text = request.getParameter("commentboxtextarea");
             String sql = "SELECT fn_add_user_comment(?, ?, ?);";
             PreparedStatement st = dbconn.getNewPreparedStatement(sql);
@@ -51,6 +56,8 @@ public class SubmitComment extends HttpServlet {
             response.sendRedirect(request.getHeader("Referer"));
         } catch (SQLException ex) {
             Logger.getLogger(SubmitComment.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NumberFormatException e) {
+            response.sendRedirect("account.jsp");
         }
     }
 
