@@ -1,8 +1,8 @@
 #!/bin/sh
 
-PGPASSWORD=putpasswordhere
-USER=putusernamehere
-DB=putdbnamehere
+PGPASSWORD=chelocean
+USER=postgres
+DB=YouVote
 
 # table creation files
 psql -d $DB -U $USER -f tbl_users.sql
